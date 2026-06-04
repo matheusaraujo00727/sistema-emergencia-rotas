@@ -1,9 +1,10 @@
 export interface Ocorrencia {
-  id: number;
+  id?: number;
   titulo: string;
   tipo: string;
   prioridade: 'BAIXA' | 'MEDIA' | 'ALTA' | 'CRITICA';
-  status: 'ABERTA' | 'EM_ATENDIMENTO' | 'FINALIZADA';
+  status?: 'ABERTA' | 'EM_ATENDIMENTO' | 'FINALIZADA';
   localizacao: string;
-  dataRegistro: string;
+  descricao?: string;
+  dataRegistro?: string;
 }

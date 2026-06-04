@@ -7,6 +7,14 @@
   <a routerLink="/ocorrencias/nova" class="btn-primary">Nova Ocorrência</a>
 </div>
 
+@if (carregando) {
+  <p>Carregando ocorrências...</p>
+}
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
 <div class="table-card">
   <table>
     <thead>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Ocorrencia } from '../../models/ocorrencia';
+import { OcorrenciaService } from '../../services/ocorrencia';
 
 @Component({
   selector: 'app-ocorrencias',
@@ -9,34 +10,29 @@ import { Ocorrencia } from '../../models/ocorrencia';
   templateUrl: './ocorrencias.html',
   styleUrl: './ocorrencias.css',
 })
-export class Ocorrencias {
-  listaOcorrencias: Ocorrencia[] = [
-    {
-      id: 1,
-      titulo: 'Acidente na Avenida Central',
-      tipo: 'Acidente de trânsito',
-      prioridade: 'ALTA',
-      status: 'ABERTA',
-      localizacao: 'Avenida Central, Setor Norte',
-      dataRegistro: '2026-06-01 14:20',
-    },
-    {
-      id: 2,
-      titulo: 'Incêndio em residência',
-      tipo: 'Incêndio',
-      prioridade: 'CRITICA',
-      status: 'EM_ATENDIMENTO',
-      localizacao: 'Rua 12, Bairro Industrial',
-      dataRegistro: '2026-06-01 15:05',
-    },
-    {
-      id: 3,
-      titulo: 'Queda de energia em hospital',
-      tipo: 'Infraestrutura',
-      prioridade: 'MEDIA',
-      status: 'FINALIZADA',
-      localizacao: 'Hospital Municipal de Cidália',
-      dataRegistro: '2026-06-01 16:10',
-    },
-  ];
+export class Ocorrencias implements OnInit {
+  listaOcorrencias: Ocorrencia[] = [];
+  carregando = false;
+  erro = '';
+
+  constructor(private ocorrenciaService: OcorrenciaService) {}
+
+  ngOnInit(): void {
+    this.carregarOcorrencias();
+  }
+
+  carregarOcorrencias(): void {
+    this.carregando = true;
+
+    this.ocorrenciaService.listar().subscribe({
+      next: (dados) => {
+        this.listaOcorrencias = dados;
+        this.carregando = false;
+      },
+      error: () => {
+        this.erro = 'Não foi possível carregar as ocorrências.';
+        this.carregando = false;
+      },
+    });
+  }
 }

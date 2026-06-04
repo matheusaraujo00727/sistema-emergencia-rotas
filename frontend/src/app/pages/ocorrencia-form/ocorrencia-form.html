@@ -47,7 +47,12 @@
 
     <div class="actions">
       <a routerLink="/ocorrencias" class="btn-secondary">Cancelar</a>
-      <button type="button" class="btn-primary">Salvar Ocorrência</button>
+      <button type="button" class="btn-primary" (click)="salvar()" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Salvar Ocorrência' }}
+      </button>
+      @if (erro) {
+        <p class="erro">{{ erro }}</p>
+      }
     </div>
   </form>
 </div>
