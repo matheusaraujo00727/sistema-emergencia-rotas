@@ -13,10 +13,6 @@ public class RecursoService {
 
     private final RecursoRepository repository;
 
-    public RecursoService(RecursoRepository repository) {
-        this.repository = repository;
-    }
-
     public List<Recurso> listarTodos() {
         return repository.findAll();
     }

@@ -13,10 +13,6 @@ public class EquipeService {
 
     private final EquipeRepository equipeRepository;
 
-    public EquipeService(EquipeRepository equipeRepository) {
-        this.equipeRepository = equipeRepository;
-    }
-
     public List<Equipe> listarTodas() {
         return equipeRepository.findAll();
     }

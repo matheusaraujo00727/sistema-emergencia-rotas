@@ -13,10 +13,6 @@ public class OcorrenciaService {
 
     private final OcorrenciaRepository ocorrenciaRepository;
 
-    public OcorrenciaService(OcorrenciaRepository ocorrenciaRepository) {
-        this.ocorrenciaRepository = ocorrenciaRepository;
-    }
-
     public List<Ocorrencia> listarTodas() {
         return ocorrenciaRepository.findAll();
     }
