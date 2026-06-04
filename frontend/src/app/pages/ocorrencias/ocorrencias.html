@@ -1,0 +1,42 @@
+<div class="page-header">
+  <div>
+    <h2>Ocorrências</h2>
+    <p>Gerenciamento e acompanhamento das ocorrências registradas.</p>
+  </div>
+
+  <a routerLink="/ocorrencias/nova" class="btn-primary">Nova Ocorrência</a>
+</div>
+
+<div class="table-card">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Tipo</th>
+      <th>Prioridade</th>
+      <th>Status</th>
+      <th>Localização</th>
+      <th>Registro</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      @for (item of listaOcorrencias; track item.id) {
+        <tr>
+          <td>#{{ item.id }}</td>
+          <td>{{ item.titulo }}</td>
+          <td>{{ item.tipo }}</td>
+          <td>
+        <span class="chip" [ngClass]="item.prioridade.toLowerCase()">
+          {{ item.prioridade }}
+        </span>
+          </td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.localizacao }}</td>
+          <td>{{ item.dataRegistro }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
