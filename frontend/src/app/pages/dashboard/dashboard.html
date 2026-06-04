@@ -1,3 +1,116 @@
-<h1 style="color: blue">
-  Dashboard funcionando
-</h1>
+<div class="dashboard">
+  <div class="page-header">
+    <div>
+      <h2>Dashboard Operacional</h2>
+      <p>Visão geral dos atendimentos de emergência em Cidália.</p>
+    </div>
+  </div>
+
+  <section class="kpi-grid">
+    <div class="kpi-card danger">
+      <span>Ocorrências Abertas</span>
+      <strong>18</strong>
+      <small>Necessitam acompanhamento</small>
+    </div>
+
+    <div class="kpi-card">
+      <span>Atendimentos em Andamento</span>
+      <strong>07</strong>
+      <small>Equipes em campo</small>
+    </div>
+
+    <div class="kpi-card success">
+      <span>Recursos Disponíveis</span>
+      <strong>24</strong>
+      <small>Ambulâncias, viaturas e apoio</small>
+    </div>
+
+    <div class="kpi-card">
+      <span>Tempo Médio</span>
+      <strong>8 min</strong>
+      <small>Resposta operacional</small>
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <div class="panel">
+      <div class="panel-header">
+        <h3>Mapa Operacional</h3>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="pin pin-red"></div>
+        <div class="pin pin-blue"></div>
+        <div class="pin pin-green"></div>
+        <p>Monitoramento territorial de ocorrências</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h3>Alertas Prioritários</h3>
+      </div>
+
+      <div class="alert-list">
+        <div class="alert-card critical">
+          <strong>Incêndio em residência</strong>
+          <span>Prioridade crítica</span>
+        </div>
+
+        <div class="alert-card high">
+          <strong>Acidente na Avenida Central</strong>
+          <span>Prioridade alta</span>
+        </div>
+
+        <div class="alert-card medium">
+          <strong>Queda de energia em hospital</strong>
+          <span>Prioridade média</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-header">
+      <h3>Últimas Ocorrências</h3>
+    </div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ocorrência</th>
+        <th>Tipo</th>
+        <th>Status</th>
+        <th>Prioridade</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>#001</td>
+        <td>Acidente na Avenida Central</td>
+        <td>Trânsito</td>
+        <td>Aberta</td>
+        <td><span class="chip high">Alta</span></td>
+      </tr>
+
+      <tr>
+        <td>#002</td>
+        <td>Incêndio em residência</td>
+        <td>Incêndio</td>
+        <td>Em atendimento</td>
+        <td><span class="chip critical">Crítica</span></td>
+      </tr>
+
+      <tr>
+        <td>#003</td>
+        <td>Queda de energia em hospital</td>
+        <td>Infraestrutura</td>
+        <td>Finalizada</td>
+        <td><span class="chip medium">Média</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
