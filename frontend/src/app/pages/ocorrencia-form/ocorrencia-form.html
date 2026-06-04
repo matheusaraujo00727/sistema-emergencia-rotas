@@ -1,1 +1,53 @@
-<p>ocorrencia-form works!</p>
+<div class="form-page">
+  <div class="page-header">
+    <div>
+      <h2>Nova Ocorrência</h2>
+      <p>Registre uma nova ocorrência para atendimento operacional.</p>
+    </div>
+  </div>
+
+  <form class="form-card">
+    <div class="form-group">
+      <label>Título</label>
+      <input type="text" placeholder="Ex: Acidente na Avenida Central" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tipo</label>
+        <select>
+          <option>Acidente de trânsito</option>
+          <option>Incêndio</option>
+          <option>Emergência médica</option>
+          <option>Infraestrutura</option>
+          <option>Segurança pública</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Prioridade</label>
+        <select>
+          <option>BAIXA</option>
+          <option>MEDIA</option>
+          <option>ALTA</option>
+          <option>CRITICA</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Localização</label>
+      <input type="text" placeholder="Ex: Avenida Central, Setor Norte" />
+    </div>
+
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea rows="5" placeholder="Descreva os detalhes da ocorrência"></textarea>
+    </div>
+
+    <div class="actions">
+      <a routerLink="/ocorrencias" class="btn-secondary">Cancelar</a>
+      <button type="button" class="btn-primary">Salvar Ocorrência</button>
+    </div>
+  </form>
+</div>
