@@ -3,6 +3,8 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { Ocorrencias } from './pages/ocorrencias/ocorrencias';
 import { OcorrenciaForm } from './pages/ocorrencia-form/ocorrencia-form';
 import { Recursos } from './pages/recursos/recursos';
+import { Equipes } from './pages/equipes/equipes';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -10,4 +12,5 @@ export const routes: Routes = [
   { path: 'ocorrencias', component: Ocorrencias },
   { path: 'recursos', component: Recursos },
   { path: 'ocorrencias/nova', component: OcorrenciaForm },
+  { path: 'equipes', component: Equipes },
 ];
