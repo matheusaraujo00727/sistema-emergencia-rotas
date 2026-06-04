@@ -1,7 +1,7 @@
 <div class="page-header">
   <div>
     <h2>Recursos Operacionais</h2>
-    <p>Controle dos recursos disponíveis para atendimento de emergências.</p>
+    <p>Controle dos recursos disponíveis para atendimento das ocorrências.</p>
   </div>
 </div>
 
@@ -10,6 +10,7 @@
     <div class="resource-card">
       <div class="resource-header">
         <span class="code">{{ recurso.codigo }}</span>
+
         <span class="chip" [ngClass]="recurso.status.toLowerCase()">
           {{ recurso.status }}
         </span>
