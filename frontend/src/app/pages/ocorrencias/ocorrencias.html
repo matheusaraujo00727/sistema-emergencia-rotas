@@ -32,19 +32,14 @@
     <tbody>
       @for (item of listaOcorrencias; track item.id) {
         <tr>
-          <td>#{{ item.id }}</td>
+          <td>{{ item.id }}</td>
           <td>{{ item.titulo }}</td>
           <td>{{ item.tipo }}</td>
-          <td>
-        <span class="chip" [ngClass]="item.prioridade.toLowerCase()">
-          {{ item.prioridade }}
-        </span>
-          </td>
+          <td>{{ item.prioridade }}</td>
           <td>{{ item.status }}</td>
           <td>{{ item.localizacao }}</td>
-          <td>{{ item.dataRegistro }}</td>
-        </tr>
-      }
+          <td>{{ item.dataAbertura }}</td>
+        </tr> }
     </tbody>
   </table>
 </div>

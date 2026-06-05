@@ -73,8 +73,8 @@ public class OcorrenciaService {
                 ocorrenciaAtualizada.getTitulo()
         );
 
-        ocorrenciaExistente.setDescricao(
-                ocorrenciaAtualizada.getDescricao()
+       ocorrenciaExistente.setLocalizacao(
+                ocorrenciaAtualizada.getLocalizacao()
         );
 
         ocorrenciaExistente.setTipo(
@@ -87,6 +87,10 @@ public class OcorrenciaService {
 
         ocorrenciaExistente.setStatus(
                 ocorrenciaAtualizada.getStatus()
+        );
+
+        ocorrenciaExistente.setDescricao(
+                ocorrenciaAtualizada.getDescricao()
         );
 
         return ocorrenciaRepository.save(

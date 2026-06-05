@@ -13,9 +13,11 @@ public class OcorrenciaMapper {
         Ocorrencia ocorrencia = new Ocorrencia();
 
         ocorrencia.setTitulo(dto.titulo());
-        ocorrencia.setDescricao(dto.descricao());
+
         ocorrencia.setTipo(dto.tipo());
         ocorrencia.setPrioridade(dto.prioridade());
+        ocorrencia.setLocalizacao(dto.localizacao());
+        ocorrencia.setDescricao(dto.descricao());
 
         return ocorrencia;
     }
@@ -27,10 +29,11 @@ public class OcorrenciaMapper {
         return new OcorrenciaResponseDTO(
                 ocorrencia.getId(),
                 ocorrencia.getTitulo(),
-                ocorrencia.getDescricao(),
                 ocorrencia.getTipo(),
                 ocorrencia.getPrioridade(),
                 ocorrencia.getStatus(),
+                ocorrencia.getLocalizacao(),
+                ocorrencia.getDescricao(),
                 ocorrencia.getDataAbertura()
         );
     }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Ocorrencia } from '../../models/ocorrencia';
 import { OcorrenciaService } from '../../services/ocorrencia';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-ocorrencias',
@@ -26,10 +26,12 @@ export class Ocorrencias implements OnInit {
 
     this.ocorrenciaService.listar().subscribe({
       next: (dados) => {
+        console.log('DADOS RECEBIDOS DO BACK:', dados);
         this.listaOcorrencias = dados;
         this.carregando = false;
       },
-      error: () => {
+      error: (erro) => {
+        console.error('ERRO AO BUSCAR OCORRÊNCIAS:', erro);
         this.erro = 'Não foi possível carregar as ocorrências.';
         this.carregando = false;
       },

@@ -3,8 +3,8 @@ export interface Ocorrencia {
   titulo: string;
   tipo: string;
   prioridade: 'BAIXA' | 'MEDIA' | 'ALTA' | 'CRITICA';
-  status?: 'ABERTA' | 'EM_ATENDIMENTO' | 'FINALIZADA';
+  status?: 'ABERTA' | 'EM_ATENDIMENTO' | 'FINALIZADA' | 'CANCELADA';
   localizacao: string;
   descricao?: string;
-  dataRegistro?: string;
+  dataAbertura?: string;
 }

@@ -12,13 +12,15 @@ public record OcorrenciaResponseDTO(
 
         String titulo,
 
-        String descricao,
-
         TipoOcorrencia tipo,
 
         Prioridade prioridade,
 
         StatusOcorrencia status,
+
+        String localizacao,
+
+        String descricao,
 
         LocalDateTime dataAbertura
 

@@ -26,6 +26,10 @@ public class Ocorrencia {
     @Size(min = 10, max = 500)
     private String descricao;
 
+    @NotBlank
+    @Size(min = 3, max = 500)
+    private String localizacao;
+
     @Enumerated(EnumType.STRING)
     @NotNull
     private TipoOcorrencia tipo;
@@ -86,6 +90,14 @@ public class Ocorrencia {
 
     public void setPrioridade(@NotNull Prioridade prioridade) {
         this.prioridade = prioridade;
+    }
+
+    public @NotBlank @Size(min = 3, max = 500) String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(@NotBlank @Size(min = 3, max = 500) String localizacao) {
+        this.localizacao = localizacao;
     }
 
     public StatusOcorrencia getStatus() {

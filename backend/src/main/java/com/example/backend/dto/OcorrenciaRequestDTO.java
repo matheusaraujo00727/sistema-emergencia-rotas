@@ -7,11 +7,13 @@ public record OcorrenciaRequestDTO(
 
         String titulo,
 
-        String descricao,
-
         TipoOcorrencia tipo,
 
-        Prioridade prioridade
+        Prioridade prioridade,
+
+        String localizacao,
+
+        String descricao
 
 ) {
 }
