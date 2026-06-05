@@ -11,6 +11,8 @@ import { Recurso } from '../../models/recurso';
 })
 export class Recursos {
   recursos: Recurso[] = [];
+  carregando = false;
+  erro = '';
 
   constructor(private recursoService: RecursoService) {}
 
@@ -19,9 +21,13 @@ export class Recursos {
   }
 
   carregarRecursos(): void {
+    this.carregando = true;
+    this.erro = '';
+
     this.recursoService.listar().subscribe({
       next: (dados) => {
         this.recursos = dados;
+        this.carregando = false;
       },
       error: (erro) => {
         console.error(erro);

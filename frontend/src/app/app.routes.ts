@@ -4,6 +4,7 @@ import { Ocorrencias } from './pages/ocorrencias/ocorrencias';
 import { OcorrenciaForm } from './pages/ocorrencia-form/ocorrencia-form';
 import { Recursos } from './pages/recursos/recursos';
 import { Equipes } from './pages/equipes/equipes';
+import { Relatorios } from './pages/relatorios/relatorios';
 
 
 export const routes: Routes = [
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'recursos', component: Recursos },
   { path: 'ocorrencias/nova', component: OcorrenciaForm },
   { path: 'equipes', component: Equipes },
+  { path: 'relatorios', component: Relatorios },
 ];

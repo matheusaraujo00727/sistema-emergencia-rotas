@@ -5,6 +5,14 @@
   </div>
 </div>
 
+@if (carregando) {
+  <p>Carregando recursos...</p>
+}
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
 <div class="cards-grid">
   @for (recurso of recursos; track recurso.id) {
     <div class="resource-card">
