@@ -1,3 +1,4 @@
+## [0.2.0] - 2026-06-04
 
 ## Funcionalidades
 
@@ -7,7 +8,20 @@
 - Controle de atendimentos
 - Relatórios e indicadores
 
-## Execução
+### Added
+- DTOs para Ocorrencia, Equipe, Recurso, Usuario e Atendimento
+- Mappers para conversão DTO ↔ Entity
+- ResourceNotFoundException
+- GlobalExceptionHandler
+- OcorrenciaController com operações CRUD
+- Persistência H2 em arquivo
+
+
+### Tested
+- POST /ocorrencias
+- GET /ocorrencias
+- GET /ocorrencias/{id}
+- 
 
 ### Backend
 
