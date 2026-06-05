@@ -13,6 +13,7 @@ public class RecursoService {
 
     private final RecursoRepository repository;
 
+
     public List<Recurso> listarTodos() {
         return repository.findAll();
     }
@@ -26,12 +27,29 @@ public class RecursoService {
     }
 
     public Recurso salvar(Recurso recurso) {
+
+        if (recurso.getTipo() == null) {
+            throw new RuntimeException(
+                    "Tipo do recurso é obrigatório."
+            );
+        }
+
+        if (recurso.getDisponivel() == null) {
+            recurso.setDisponivel(true);
+        }
+
         return repository.save(recurso);
     }
 
     public Recurso atualizar(Long id, Recurso recursoAtualizado) {
 
         Recurso recursoExistente = buscarPorId(id);
+
+        if (recursoAtualizado.getTipo() == null) {
+            throw new RuntimeException(
+                    "Tipo do recurso é obrigatório."
+            );
+        }
 
         recursoExistente.setNome(
                 recursoAtualizado.getNome()
@@ -53,6 +71,12 @@ public class RecursoService {
     public void deletar(Long id) {
 
         Recurso recurso = buscarPorId(id);
+
+        if (!recurso.getDisponivel()) {
+            throw new RuntimeException(
+                    "Não é possível excluir um recurso indisponível."
+            );
+        }
 
         repository.delete(recurso);
     }

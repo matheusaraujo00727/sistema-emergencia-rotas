@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,9 +51,9 @@ public class AtendimentoController {
 
         Atendimento atendimento = new Atendimento();
 
-        atendimento.setDataInicio(dto.dataInicio());
+        atendimento.setDataInicio(LocalDateTime.now());
 
-        atendimento.setDataFim(dto.dataFim());
+        atendimento.setDataFim(null);
 
         atendimento.setStatus(dto.status());
 
@@ -68,4 +69,6 @@ public class AtendimentoController {
                 .status(HttpStatus.CREATED)
                 .body(AtendimentoMapper.toResponseDTO(salvo));
     }
+
+
 }
