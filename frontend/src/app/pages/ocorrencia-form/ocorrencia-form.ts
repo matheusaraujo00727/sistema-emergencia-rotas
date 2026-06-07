@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { OcorrenciaService } from '../../services/ocorrencia';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ocorrencia-form',
-  imports: [RouterLink, FormsModule],
+  standalone: true,
+  imports: [RouterLink, FormsModule, CommonModule],
   templateUrl: './ocorrencia-form.html',
   styleUrl: './ocorrencia-form.css',
 })
 export class OcorrenciaForm {
   titulo = '';
-  tipo = 'ACIDENTE_TRANSITO';
+  tipo: 'ACIDENTE' | 'INCENDIO' | 'EMERGENCIA_MEDICA' | 'DESASTRE_NATURAL' | 'OUTRO' = 'ACIDENTE';
   prioridade: 'BAIXA' | 'MEDIA' | 'ALTA' | 'CRITICA' = 'BAIXA';
   localizacao = '';
   descricao = '';

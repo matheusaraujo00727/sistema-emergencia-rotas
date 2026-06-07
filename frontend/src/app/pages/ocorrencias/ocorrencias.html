@@ -7,7 +7,7 @@
   <a routerLink="/ocorrencias/nova" class="btn-primary">Nova Ocorrência</a>
 </div>
 
-@if (carregando) {
+@if (carregando && listaOcorrencias.length === 0) {
   <p>Carregando ocorrências...</p>
 }
 
@@ -39,7 +39,8 @@
           <td>{{ item.status }}</td>
           <td>{{ item.localizacao }}</td>
           <td>{{ item.dataAbertura }}</td>
-        </tr> }
+        </tr>
+      }
     </tbody>
   </table>
 </div>

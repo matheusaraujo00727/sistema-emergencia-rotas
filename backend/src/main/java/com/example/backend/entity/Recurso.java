@@ -3,6 +3,7 @@ package com.example.backend.entity;
 import com.example.backend.enums.TipoRecurso;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "recursos")
@@ -20,6 +21,13 @@ public class Recurso {
 
     private Boolean disponivel;
 
+    @Pattern(
+            regexp = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$",
+            message = "Placa deve estar no formato Mercosul (AAA1A11)"
+    )
+    @Column(unique = true)
+    private String placa;
+
     public Long getId() {
         return id;
     }
@@ -28,11 +36,11 @@ public class Recurso {
         this.id = id;
     }
 
-    public @NotBlank String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -50,5 +58,13 @@ public class Recurso {
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 }

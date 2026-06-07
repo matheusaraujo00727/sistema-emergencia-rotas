@@ -12,7 +12,7 @@ export class OcorrenciaService {
   constructor(private http: HttpClient) {}
 
   listar(): Observable<Ocorrencia[]> {
-    return this.http.get<Ocorrencia[]>(this.apiUrl);
+    return this.http.get<Ocorrencia[]>(`${this.apiUrl}?t=${Date.now()}`);
   }
 
   buscarPorId(id: number): Observable<Ocorrencia> {

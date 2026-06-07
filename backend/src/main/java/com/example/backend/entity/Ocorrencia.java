@@ -23,7 +23,7 @@ public class Ocorrencia {
     private String titulo;
 
     @NotBlank
-    @Size(min = 10, max = 500)
+    @Size(min = 1, max = 500)
     private String descricao;
 
     @NotBlank

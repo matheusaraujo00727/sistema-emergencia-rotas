@@ -8,7 +8,9 @@ public record RecursoRequestDTO(
 
         TipoRecurso tipo,
 
-        Boolean disponivel
+        Boolean disponivel,
+
+        String placa
 
 ) {
 }

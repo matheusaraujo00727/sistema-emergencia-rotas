@@ -10,7 +10,9 @@ public record RecursoResponseDTO(
 
         TipoRecurso tipo,
 
-        Boolean disponivel
+        Boolean disponivel,
+
+        String placa
 
 ) {
 }

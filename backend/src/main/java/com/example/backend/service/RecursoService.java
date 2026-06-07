@@ -38,6 +38,10 @@ public class RecursoService {
             recurso.setDisponivel(true);
         }
 
+        if (repository.findByPlaca(recurso.getPlaca()).isPresent()) {
+            throw new RuntimeException("Já existe um recurso com essa placa.");
+        }
+
         return repository.save(recurso);
     }
 
@@ -57,6 +61,10 @@ public class RecursoService {
 
         recursoExistente.setTipo(
                 recursoAtualizado.getTipo()
+        );
+
+        recursoExistente.setPlaca(
+                recursoAtualizado.getPlaca()
         );
 
         recursoExistente.setDisponivel(
