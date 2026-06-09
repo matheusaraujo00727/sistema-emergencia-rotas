@@ -1,0 +1,75 @@
+<div class="form-page">
+  <div class="page-header">
+    <div>
+      <h2>Nova Ocorrência</h2>
+      <p>Registre uma nova ocorrência para atendimento operacional.</p>
+    </div>
+  </div>
+
+  @if (erro) {
+    <p class="erro">{{ erro }}</p>
+  }
+
+  <form class="form-card">
+    <div class="form-group">
+      <label>Título</label>
+      <input
+        type="text"
+        placeholder="Ex: Acidente na Avenida Central"
+        [(ngModel)]="titulo"
+        name="titulo"
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tipo</label>
+        <select [(ngModel)]="tipo" name="tipo">
+          <option value="ACIDENTE">Acidente</option>
+          <option value="INCENDIO">Incêndio</option>
+          <option value="EMERGENCIA_MEDICA">Emergência médica</option>
+          <option value="DESASTRE_NATURAL">Desastre natural</option>
+          <option value="OUTRO">Outro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Prioridade</label>
+        <select [(ngModel)]="prioridade" name="prioridade">
+          <option value="BAIXA">Baixa</option>
+          <option value="MEDIA">Média</option>
+          <option value="ALTA">Alta</option>
+          <option value="CRITICA">Crítica</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Localização</label>
+      <input
+        type="text"
+        placeholder="Ex: Avenida Central, Setor Norte"
+        [(ngModel)]="localizacao"
+        name="localizacao"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea
+        rows="5"
+        placeholder="Descreva os detalhes da ocorrência"
+        [(ngModel)]="descricao"
+        name="descricao"
+      ></textarea>
+    </div>
+
+    <div class="actions">
+      <a routerLink="/ocorrencias" class="btn-secondary">Cancelar</a>
+
+      <button type="button" class="btn-primary" (click)="salvar()" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Salvar Ocorrência' }}
+      </button>
+    </div>
+  </form>
+</div>
