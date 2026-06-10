@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { OcorrenciaService } from '../../services/ocorrencia';
@@ -24,6 +24,7 @@ export class OcorrenciaForm {
   constructor(
     private ocorrenciaService: OcorrenciaService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   salvar(): void {
@@ -42,10 +43,12 @@ export class OcorrenciaForm {
       next: () => {
         this.salvando = false;
         this.router.navigate(['/ocorrencias']);
+        this.cdr.detectChanges();
       },
       error: () => {
         this.salvando = false;
         this.erro = 'Não foi possível salvar a ocorrência.';
+        this.cdr.detectChanges();
       },
     });
   }

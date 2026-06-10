@@ -1,16 +1,16 @@
 .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 24px;
 }
 
 .page-header h2 {
   margin: 0;
-  font-size: 30px;
-  color: #131b2e;
 }
 
 .page-header p {
   margin-top: 6px;
-  color: #6b7280;
 }
 
 .cards-grid {
@@ -76,4 +76,28 @@
 .em_manutencao {
   background: #fef3c7;
   color: #92400e;
+}
+.indisponivel {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn-danger {
+  margin-top: 16px;
+  background: #bb0112;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #bb0112;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
 }

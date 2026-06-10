@@ -3,6 +3,8 @@
     <h2>Recursos Operacionais</h2>
     <p>Controle dos recursos disponíveis para atendimento das ocorrências.</p>
   </div>
+
+  <a routerLink="/recursos/novo" class="btn-primary">Novo Recurso</a>
 </div>
 
 @if (carregando) {
@@ -17,19 +19,25 @@
   @for (recurso of recursos; track recurso.id) {
     <div class="resource-card">
       <div class="resource-header">
-        <span class="code">{{ recurso.codigo }}</span>
+        <span class="code">#{{ recurso.id }}</span>
 
-        <span class="chip" [ngClass]="recurso.status.toLowerCase()">
-          {{ recurso.status }}
-        </span>
+        @if (recurso.disponivel) {
+          <span class="chip disponivel">Disponível</span>
+        } @else {
+          <span class="chip indisponivel">Indisponível</span>
+        }
       </div>
 
       <h3>{{ recurso.nome }}</h3>
-      <p>{{ recurso.tipo }}</p>
+      <p>Tipo: {{ recurso.tipo }}</p>
 
       <div class="location">
-        Localização: {{ recurso.localizacao }}
+        Placa: {{ recurso.placa || 'Não informada' }}
       </div>
+
+      <button type="button" class="btn-danger" (click)="excluir(recurso.id)">
+        Excluir
+      </button>
     </div>
   }
 </div>

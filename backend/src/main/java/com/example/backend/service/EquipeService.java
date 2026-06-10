@@ -26,10 +26,26 @@ public class EquipeService {
     }
 
     public Equipe salvar(Equipe equipe) {
+        if (equipe.getQuantidadeMembros() == null
+                || equipe.getQuantidadeMembros() <= 0) {
+
+            throw new RuntimeException(
+                    "A equipe deve possuir pelo menos 1 membro."
+            );
+        }
+
         return equipeRepository.save(equipe);
     }
 
     public Equipe atualizar(Long id, Equipe equipeAtualizada) {
+
+        if (equipeAtualizada.getQuantidadeMembros() == null
+                || equipeAtualizada.getQuantidadeMembros() <= 0) {
+
+            throw new RuntimeException(
+                    "A equipe deve possuir pelo menos 1 membro."
+            );
+        }
 
         Equipe equipeExistente = buscarPorId(id);
 

@@ -22,10 +22,10 @@ public class Recurso {
     private Boolean disponivel;
 
     @Pattern(
-            regexp = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$",
+            regexp = "^$|^[A-Z]{3}[0-9][A-Z][0-9]{2}$",
             message = "Placa deve estar no formato Mercosul (AAA1A11)"
     )
-    @Column(unique = true)
+    @Column(unique = true, nullable = true)
     private String placa;
 
     public Long getId() {

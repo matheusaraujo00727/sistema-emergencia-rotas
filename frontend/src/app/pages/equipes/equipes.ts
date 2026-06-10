@@ -1,11 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { Equipe } from '../../models/equipe';
 import { EquipeService } from '../../services/equipe';
 
 @Component({
   selector: 'app-equipes',
-  imports: [NgClass],
+  imports: [NgClass, RouterLink, CommonModule],
   templateUrl: './equipes.html',
   styleUrl: './equipes.css',
 })
@@ -34,8 +35,12 @@ export class Equipes implements OnInit {
         this.carregando = false;
         this.cdr.detectChanges();
       },
-      error: () => {
-        this.erro = 'Não foi possível carregar as equipes.';
+      error: (erro) => {
+        console.error('Erro ao carregar equipes:', erro);
+
+        this.erro =
+          erro?.error?.message || erro?.error?.erro || 'Não foi possível carregar as equipes.';
+
         this.carregando = false;
         this.cdr.detectChanges();
       },

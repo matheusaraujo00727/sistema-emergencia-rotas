@@ -83,12 +83,14 @@ textarea:focus {
 }
 
 .erro {
-  background: red;
+  background: #bb0112;
   color: white;
   text-align: center;
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 800;
   border-radius: 8px;
   padding: 12px 18px;
+  margin-bottom: 18px;
 }
 
 .btn-secondary {

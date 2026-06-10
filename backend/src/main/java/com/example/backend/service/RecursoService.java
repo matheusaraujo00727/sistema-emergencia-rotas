@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.entity.Recurso;
+import com.example.backend.enums.TipoRecurso;
 import com.example.backend.repository.RecursoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,11 @@ import java.util.List;
 public class RecursoService {
 
     private final RecursoRepository repository;
+
+    private boolean exigePlaca(TipoRecurso tipo) {
+        return tipo == TipoRecurso.AMBULANCIA
+                || tipo == TipoRecurso.VIATURA;
+    }
 
 
     public List<Recurso> listarTodos() {
@@ -38,8 +44,22 @@ public class RecursoService {
             recurso.setDisponivel(true);
         }
 
-        if (repository.findByPlaca(recurso.getPlaca()).isPresent()) {
-            throw new RuntimeException("Já existe um recurso com essa placa.");
+        if (exigePlaca(recurso.getTipo())
+                && (recurso.getPlaca() == null
+                || recurso.getPlaca().isBlank())) {
+
+            throw new RuntimeException(
+                    "Este tipo de recurso exige uma placa."
+            );
+        }
+
+        if (recurso.getPlaca() != null
+                && !recurso.getPlaca().isBlank()
+                && repository.findByPlaca(recurso.getPlaca()).isPresent()) {
+
+            throw new RuntimeException(
+                    "Já existe um recurso com essa placa."
+            );
         }
 
         return repository.save(recurso);
@@ -53,6 +73,21 @@ public class RecursoService {
             throw new RuntimeException(
                     "Tipo do recurso é obrigatório."
             );
+        }
+
+        if (recursoAtualizado.getPlaca() != null
+                && !recursoAtualizado.getPlaca().isBlank()) {
+
+            repository.findByPlaca(
+                    recursoAtualizado.getPlaca()
+            ).ifPresent(recurso -> {
+
+                if (!recurso.getId().equals(id)) {
+                    throw new RuntimeException(
+                            "Já existe um recurso com essa placa."
+                    );
+                }
+            });
         }
 
         recursoExistente.setNome(
