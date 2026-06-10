@@ -37,12 +37,16 @@ public class EquipeService {
                 equipeAtualizada.getNome()
         );
 
-        equipeExistente.setSetor(
-                equipeAtualizada.getSetor()
+        equipeExistente.setEspecialidade(
+                equipeAtualizada.getEspecialidade()
         );
 
-        equipeExistente.setAtiva(
-                equipeAtualizada.getAtiva()
+        equipeExistente.setStatus(
+                equipeAtualizada.getStatus()
+        );
+
+        equipeExistente.setQuantidadeMembros(
+                equipeAtualizada.getQuantidadeMembros()
         );
 
         return equipeRepository.save(

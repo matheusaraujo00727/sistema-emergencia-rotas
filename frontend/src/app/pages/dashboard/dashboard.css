@@ -101,21 +101,19 @@
 }
 
 .pin-red {
-  background: #bb0112;
-  top: 30%;
-  left: 35%;
+  background: #dc2626;
+}
+
+.pin-orange {
+  background: #f97316;
+}
+
+.pin-yellow {
+  background: #eab308;
 }
 
 .pin-blue {
   background: #2563eb;
-  top: 55%;
-  left: 60%;
-}
-
-.pin-green {
-  background: #009842;
-  top: 45%;
-  left: 48%;
 }
 
 .alert-list {

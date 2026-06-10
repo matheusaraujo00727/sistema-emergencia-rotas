@@ -1,5 +1,6 @@
 package com.example.backend.entity;
 
+import com.example.backend.enums.StatusEquipe;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -15,9 +16,12 @@ public class Equipe {
     private String nome;
 
     @NotBlank
-    private String setor;
+    private String especialidade;
 
-    private Boolean ativa;
+    @Enumerated(EnumType.STRING)
+    private StatusEquipe status;
+
+    private Integer quantidadeMembros;
 
     public Long getId() {
         return id;
@@ -27,27 +31,35 @@ public class Equipe {
         this.id = id;
     }
 
-    public @NotBlank String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public @NotBlank String getSetor() {
-        return setor;
+    public String getEspecialidade() {
+        return especialidade;
     }
 
-    public void setSetor(@NotBlank String setor) {
-        this.setor = setor;
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
     }
 
-    public Boolean getAtiva() {
-        return ativa;
+    public StatusEquipe getStatus() {
+        return status;
     }
 
-    public void setAtiva(Boolean ativa) {
-        this.ativa = ativa;
+    public void setStatus(StatusEquipe status) {
+        this.status = status;
+    }
+
+    public Integer getQuantidadeMembros() {
+        return quantidadeMembros;
+    }
+
+    public void setQuantidadeMembros(Integer quantidadeMembros) {
+        this.quantidadeMembros = quantidadeMembros;
     }
 }

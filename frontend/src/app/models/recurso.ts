@@ -1,4 +1,5 @@
 export interface Recurso {
+  disponivel: boolean;
   id?: number;
   codigo: string;
   nome: string;

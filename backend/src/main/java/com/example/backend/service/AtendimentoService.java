@@ -4,6 +4,7 @@ import com.example.backend.entity.Atendimento;
 import com.example.backend.entity.Equipe;
 import com.example.backend.entity.Ocorrencia;
 import com.example.backend.enums.StatusAtendimento;
+import com.example.backend.enums.StatusEquipe;
 import com.example.backend.enums.StatusOcorrencia;
 import com.example.backend.repository.AtendimentoRepository;
 import com.example.backend.repository.EquipeRepository;
@@ -42,9 +43,9 @@ public class AtendimentoService {
         Equipe equipe = equipeRepository.findById(equipeId)
                 .orElseThrow(() -> new RuntimeException("Equipe não encontrada"));
 
-        if (!equipe.getAtiva()) {
+        if (equipe.getStatus() != StatusEquipe.DISPONIVEL) {
             throw new RuntimeException(
-                    "Equipe inativa não pode atender ocorrências."
+                    "A equipe não está disponível para atendimento."
             );
         }
 

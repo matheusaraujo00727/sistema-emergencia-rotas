@@ -1,12 +1,16 @@
 package com.example.backend.dto;
 
+import com.example.backend.enums.StatusEquipe;
+
 public record EquipeRequestDTO(
 
         String nome,
 
-        String setor,
+        String especialidade,
 
-        Boolean ativa
+        StatusEquipe status,
+
+        Integer quantidadeMembros
 
 ) {
 }

@@ -13,8 +13,9 @@ public class EquipeMapper {
         Equipe equipe = new Equipe();
 
         equipe.setNome(dto.nome());
-        equipe.setSetor(dto.setor());
-        equipe.setAtiva(dto.ativa());
+        equipe.setEspecialidade(dto.especialidade());
+        equipe.setStatus(dto.status());
+        equipe.setQuantidadeMembros(dto.quantidadeMembros());
 
         return equipe;
     }
@@ -26,8 +27,10 @@ public class EquipeMapper {
         return new EquipeResponseDTO(
                 equipe.getId(),
                 equipe.getNome(),
-                equipe.getSetor(),
-                equipe.getAtiva()
+                equipe.getEspecialidade(),
+                equipe.getStatus(),
+                equipe.getQuantidadeMembros()
+
         );
     }
 }
