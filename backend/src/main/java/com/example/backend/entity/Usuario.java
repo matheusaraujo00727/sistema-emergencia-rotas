@@ -1,8 +1,9 @@
 package com.example.backend.entity;
 
+import com.example.backend.enums.PerfilUsuario;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "usuarios")
@@ -15,12 +16,16 @@ public class Usuario {
     @NotBlank
     private String nome;
 
-    @Email
-    @Column(unique = true)
-    private String email;
+    @Enumerated(EnumType.STRING)
+    private PerfilUsuario perfil;
 
+    @Column(unique = true)
     @NotBlank
-    private String senha;
+    @Pattern(
+            regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}",
+            message = "CPF deve estar no formato 000.000.000-00"
+    )
+    private String cpf;
 
     public Long getId() {
         return id;
@@ -30,27 +35,27 @@ public class Usuario {
         this.id = id;
     }
 
-    public @NotBlank String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public @Email String getEmail() {
-        return email;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setEmail(@Email String email) {
-        this.email = email;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public @NotBlank String getSenha() {
-        return senha;
+    public PerfilUsuario getPerfil() {
+        return perfil;
     }
 
-    public void setSenha(@NotBlank String senha) {
-        this.senha = senha;
+    public void setPerfil(PerfilUsuario perfil) {
+        this.perfil = perfil;
     }
 }

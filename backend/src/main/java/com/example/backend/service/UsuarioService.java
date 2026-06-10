@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.entity.Usuario;
+import com.example.backend.enums.PerfilUsuario;
 import com.example.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,15 @@ public class UsuarioService {
     }
 
     public Usuario salvar(Usuario usuario) {
+        if (
+                usuario.getNome().equalsIgnoreCase("adm")
+                        && usuario.getCpf().equals("000.000.000-00")
+        ) {
+            usuario.setPerfil(PerfilUsuario.ADMIN);
+        } else {
+            usuario.setPerfil(PerfilUsuario.OPERADOR);
+        }
+
         return usuarioRepository.save(usuario);
     }
 
@@ -41,13 +51,22 @@ public class UsuarioService {
                 usuarioAtualizado.getNome()
         );
 
-        usuarioExistente.setEmail(
-                usuarioAtualizado.getEmail()
+        usuarioExistente.setCpf(
+                usuarioAtualizado.getCpf()
         );
 
-        usuarioExistente.setSenha(
-                usuarioAtualizado.getSenha()
-        );
+        if (
+                usuarioAtualizado.getNome().equalsIgnoreCase("adm")
+                        && usuarioAtualizado.getCpf().equals("000.000.000-00")
+        ) {
+            usuarioExistente.setPerfil(
+                    PerfilUsuario.ADMIN
+            );
+        } else {
+            usuarioExistente.setPerfil(
+                    PerfilUsuario.OPERADOR
+            );
+        }
 
         return usuarioRepository.save(
                 usuarioExistente

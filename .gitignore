@@ -37,3 +37,6 @@ frontend/dist/
 backend/target/
 
 # Logs
+
+echo backend/data/ >> .gitignore
+echo data/ >> .gitignore
