@@ -11,6 +11,17 @@
         <a routerLink="/ocorrencias">Ocorrências</a>
         <a routerLink="/ocorrencias/nova">Nova Ocorrência</a>
         <a routerLink="/equipes">Equipes</a>
+
+        @if (authService.isAdmin()) {
+          <a routerLink="/equipes/nova">Cadastrar Equipe</a>
+          <a routerLink="/recursos">Recursos</a>
+          <a routerLink="/recursos/novo">Cadastrar Recurso</a>
+          <a routerLink="/relatorios">Relatórios</a>
+        }
+
+        <button type="button" class="logout-btn" (click)="sair()">
+          Sair
+        </button>
       </nav>
     </aside>
 

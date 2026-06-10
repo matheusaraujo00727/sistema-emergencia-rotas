@@ -55,3 +55,14 @@
   padding: 32px;
   background: #f8f9ff;
 }
+
+.logout-btn {
+  margin-top: 24px;
+  background: #bb0112;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}
