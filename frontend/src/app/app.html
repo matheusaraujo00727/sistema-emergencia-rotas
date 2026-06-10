@@ -1,19 +1,21 @@
-<div class="layout">
-  <aside class="sidebar">
-    <h1>Vitalis Tech</h1>
-    <p>Sistema de Gestão de Emergências</p>
+@if (isLoginPage()) {
+  <router-outlet></router-outlet>
+} @else {
+  <div class="layout">
+    <aside class="sidebar">
+      <h1>Vitalis Tech</h1>
+      <p>Sistema de Gestão de Emergências</p>
 
-    <nav>
-      <a routerLink="/dashboard">Dashboard</a>
-      <a routerLink="/ocorrencias">Ocorrências</a>
-      <a routerLink="/ocorrencias/nova">Nova Ocorrência</a>
-      <a routerLink="/recursos">Recursos</a>
-      <a routerLink="/equipes">Equipes</a>
-      <a routerLink="/relatorios">Relatórios</a>
-    </nav>
-  </aside>
+      <nav>
+        <a routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/ocorrencias">Ocorrências</a>
+        <a routerLink="/ocorrencias/nova">Nova Ocorrência</a>
+        <a routerLink="/equipes">Equipes</a>
+      </nav>
+    </aside>
 
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
-</div>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+}

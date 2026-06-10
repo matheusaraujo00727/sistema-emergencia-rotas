@@ -33,7 +33,7 @@ public class UsuarioService {
         ) {
             usuario.setPerfil(PerfilUsuario.ADMIN);
         } else {
-            usuario.setPerfil(PerfilUsuario.OPERADOR);
+            usuario.setPerfil(PerfilUsuario.USUARIO);
         }
 
         return usuarioRepository.save(usuario);
@@ -64,7 +64,7 @@ public class UsuarioService {
             );
         } else {
             usuarioExistente.setPerfil(
-                    PerfilUsuario.OPERADOR
+                    PerfilUsuario.USUARIO
             );
         }
 

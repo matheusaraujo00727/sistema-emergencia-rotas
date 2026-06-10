@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario';
 
 export type PerfilUsuario = 'ADMIN' | 'USUARIO';
 
@@ -9,29 +10,21 @@ export type PerfilUsuario = 'ADMIN' | 'USUARIO';
 export class AuthService {
   constructor(private router: Router) {}
 
-  login(email: string, senha: string): boolean {
-    if (email === 'admin@vitalis.com' && senha === 'admin') {
-      localStorage.setItem('perfil', 'ADMIN');
-      this.router.navigate(['/dashboard']);
-      return true;
-    }
+  login(usuario: Usuario): void {
+    localStorage.setItem('usuarioNome', usuario.nome);
+    localStorage.setItem('usuarioCpf', usuario.cpf);
+    localStorage.setItem('perfil', usuario.perfil);
 
-    if (email && senha) {
-      localStorage.setItem('perfil', 'USUARIO');
-      this.router.navigate(['/dashboard']);
-      return true;
-    }
-
-    return false;
+    this.router.navigate(['/dashboard']);
   }
 
   logout(): void {
-    localStorage.removeItem('perfil');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 
   estaLogado(): boolean {
-    return localStorage.getItem('perfil') !== null;
+    return !!localStorage.getItem('usuarioCpf');
   }
 
   getPerfil(): PerfilUsuario | null {

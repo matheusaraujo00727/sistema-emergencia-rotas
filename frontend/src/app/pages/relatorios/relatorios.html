@@ -13,6 +13,22 @@
   <p class="erro">{{ erro }}</p>
 }
 
+<div class="advanced-query">
+  <h3>Consulta Avançada</h3>
+
+  <input
+    [(ngModel)]="consulta"
+    name="consulta"
+    placeholder='Ex: parametro.tipo = "ACIDENTE" AND parametro.setor = "NORTE"'
+  />
+
+  <button (click)="validarConsulta()">Validar Consulta</button>
+
+  @if (resultadoConsulta) {
+    <p>{{ resultadoConsulta }}</p>
+  }
+</div>
+
 @if (relatorio) {
   <div class="report-grid">
     <div class="report-card">

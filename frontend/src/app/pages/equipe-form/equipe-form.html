@@ -1,0 +1,88 @@
+<div class="form-container">
+
+  <div class="page-header">
+    <h2>Nova Equipe</h2>
+    <p>Cadastre uma equipe operacional para atendimento de emergências.</p>
+  </div>
+
+  <div class="form-card">
+
+    <div class="card-title">
+      Informações da Equipe
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Nome da Equipe</label>
+        <input
+          [(ngModel)]="nome"
+          name="nome"
+          placeholder="Ex: Equipe Alfa"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Especialidade</label>
+        <input
+          [(ngModel)]="especialidade"
+          name="especialidade"
+          placeholder="Ex: Resgate Urbano"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Status Operacional</label>
+
+        <select
+          [(ngModel)]="status"
+          name="status"
+        >
+          <option value="DISPONIVEL">Disponível</option>
+          <option value="EM_ATENDIMENTO">Em Atendimento</option>
+          <option value="INDISPONIVEL">Indisponível</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Quantidade de Membros</label>
+
+        <input
+          type="number"
+          min="1"
+          [(ngModel)]="quantidadeMembros"
+          name="quantidadeMembros"
+        />
+      </div>
+
+    </div>
+
+    @if (erro) {
+      <div class="error-box">
+        {{ erro }}
+      </div>
+    }
+
+    <div class="actions">
+
+      <a
+        routerLink="/equipes"
+        class="btn-secondary"
+      >
+        Cancelar
+      </a>
+
+      <button
+        class="btn-primary"
+        type="button"
+        (click)="salvar()"
+        [disabled]="salvando"
+      >
+        {{ salvando ? 'Salvando...' : 'Salvar Equipe' }}
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

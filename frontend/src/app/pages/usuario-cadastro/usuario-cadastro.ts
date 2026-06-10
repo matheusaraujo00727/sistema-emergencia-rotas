@@ -12,8 +12,8 @@ import { UsuarioService } from '../../services/usuario';
 })
 export class UsuarioCadastro {
   nome = '';
-  email = '';
-  senha = '';
+  cpf = '';
+  perfil: 'ADMIN' | 'USUARIO' = 'USUARIO';
 
   salvando = false;
   erro = '';
@@ -28,8 +28,8 @@ export class UsuarioCadastro {
     this.erro = '';
     this.sucesso = '';
 
-    if (!this.nome || !this.email || !this.senha) {
-      this.erro = 'Preencha todos os campos.';
+    if (!this.nome.trim() || !this.cpf.trim()) {
+      this.erro = 'Preencha nome e CPF.';
       return;
     }
 
@@ -38,8 +38,8 @@ export class UsuarioCadastro {
     this.usuarioService
       .salvar({
         nome: this.nome,
-        email: this.email,
-        senha: this.senha,
+        cpf: this.cpf,
+        perfil: this.perfil,
       })
       .subscribe({
         next: () => {

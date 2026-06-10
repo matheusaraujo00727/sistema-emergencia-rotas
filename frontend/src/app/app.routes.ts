@@ -6,23 +6,24 @@ import { Recursos } from './pages/recursos/recursos';
 import { Equipes } from './pages/equipes/equipes';
 import { Relatorios } from './pages/relatorios/relatorios';
 import { Login } from './pages/login/login';
-import { Admin } from './pages/admin/admin';
-import { UsuarioCadastro } from './pages/usuario-cadastro/usuario-cadastro';
+import { EquipeForm } from './pages/equipe-form/equipe-form';
+import { RecursoForm } from './pages/recurso-form/recurso-form';
+import { authGuard } from './guards/auth-guard';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
   { path: 'login', component: Login },
 
-  { path: 'admin', component: Admin },
-  { path: 'usuario/cadastro', component: UsuarioCadastro },
+  { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
+  { path: 'ocorrencias', component: Ocorrencias, canActivate: [authGuard] },
+  { path: 'ocorrencias/nova', component: OcorrenciaForm, canActivate: [authGuard] },
+  { path: 'equipes', component: Equipes, canActivate: [authGuard] },
 
-  { path: 'dashboard', component: Dashboard },
-  { path: 'ocorrencias', component: Ocorrencias },
-  { path: 'ocorrencias/nova', component: OcorrenciaForm },
-  { path: 'recursos', component: Recursos },
-  { path: 'equipes', component: Equipes },
-  { path: 'relatorios', component: Relatorios },
+  { path: 'recursos', component: Recursos, canActivate: [authGuard, adminGuard] },
+  { path: 'relatorios', component: Relatorios, canActivate: [authGuard, adminGuard] },
+  { path: 'equipes/nova', component: EquipeForm, canActivate: [authGuard, adminGuard] },
+  { path: 'recursos/novo', component: RecursoForm, canActivate: [authGuard, adminGuard] },
 
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
 ];
