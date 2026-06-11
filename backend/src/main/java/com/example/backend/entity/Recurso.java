@@ -1,5 +1,6 @@
 package com.example.backend.entity;
 
+import com.example.backend.enums.StatusRecurso;
 import com.example.backend.enums.TipoRecurso;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +20,8 @@ public class Recurso {
     @Enumerated(EnumType.STRING)
     private TipoRecurso tipo;
 
-    private Boolean disponivel;
+    @Enumerated(EnumType.STRING)
+    private StatusRecurso status;
 
     @Pattern(
             regexp = "^$|^[A-Z]{3}[0-9][A-Z][0-9]{2}$",
@@ -52,12 +54,12 @@ public class Recurso {
         this.tipo = tipo;
     }
 
-    public Boolean getDisponivel() {
-        return disponivel;
+    public StatusRecurso getStatus() {
+        return status;
     }
 
-    public void setDisponivel(Boolean disponivel) {
-        this.disponivel = disponivel;
+    public void setStatus(StatusRecurso status) {
+        this.status = status;
     }
 
     public String getPlaca() {

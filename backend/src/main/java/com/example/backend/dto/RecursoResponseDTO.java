@@ -1,5 +1,6 @@
 package com.example.backend.dto;
 
+import com.example.backend.enums.StatusRecurso;
 import com.example.backend.enums.TipoRecurso;
 
 public record RecursoResponseDTO(
@@ -10,7 +11,7 @@ public record RecursoResponseDTO(
 
         TipoRecurso tipo,
 
-        Boolean disponivel,
+        StatusRecurso status,
 
         String placa
 

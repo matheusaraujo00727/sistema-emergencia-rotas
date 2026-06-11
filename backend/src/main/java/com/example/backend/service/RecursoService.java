@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.entity.Recurso;
+import com.example.backend.enums.StatusRecurso;
 import com.example.backend.enums.TipoRecurso;
 import com.example.backend.repository.RecursoRepository;
 import lombok.RequiredArgsConstructor;
@@ -40,8 +41,14 @@ public class RecursoService {
             );
         }
 
-        if (recurso.getDisponivel() == null) {
-            recurso.setDisponivel(true);
+        if (recurso.getStatus() == null) {
+            recurso.setStatus(StatusRecurso.DISPONIVEL);
+        }
+
+        if (recurso.getPlaca() != null
+                && recurso.getPlaca().isBlank()) {
+
+            recurso.setPlaca(null);
         }
 
         if (exigePlaca(recurso.getTipo())
@@ -76,6 +83,12 @@ public class RecursoService {
         }
 
         if (recursoAtualizado.getPlaca() != null
+                && recursoAtualizado.getPlaca().isBlank()) {
+
+            recursoAtualizado.setPlaca(null);
+        }
+
+        if (recursoAtualizado.getPlaca() != null
                 && !recursoAtualizado.getPlaca().isBlank()) {
 
             repository.findByPlaca(
@@ -102,8 +115,8 @@ public class RecursoService {
                 recursoAtualizado.getPlaca()
         );
 
-        recursoExistente.setDisponivel(
-                recursoAtualizado.getDisponivel()
+        recursoExistente.setStatus(
+                recursoAtualizado.getStatus()
         );
 
         return repository.save(
@@ -115,7 +128,7 @@ public class RecursoService {
 
         Recurso recurso = buscarPorId(id);
 
-        if (!recurso.getDisponivel()) {
+        if (recurso.getStatus() == StatusRecurso.INDISPONIVEL){
             throw new RuntimeException(
                     "Não é possível excluir um recurso indisponível."
             );

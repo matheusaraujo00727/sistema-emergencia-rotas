@@ -62,6 +62,7 @@ public class AtendimentoController {
         Atendimento salvo = atendimentoService.salvar(
                         dto.ocorrenciaId(),
                         dto.equipeId(),
+                        dto.recursoId(),
                         atendimento
                 );
 

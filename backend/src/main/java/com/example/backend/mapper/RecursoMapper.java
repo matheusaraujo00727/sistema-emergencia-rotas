@@ -14,7 +14,7 @@ public class RecursoMapper {
 
         recurso.setNome(dto.nome());
         recurso.setTipo(dto.tipo());
-        recurso.setDisponivel(dto.disponivel());
+        recurso.setStatus(dto.status());
         recurso.setPlaca(dto.placa());
 
         return recurso;
@@ -28,7 +28,7 @@ public class RecursoMapper {
                 recurso.getId(),
                 recurso.getNome(),
                 recurso.getTipo(),
-                recurso.getDisponivel(),
+                recurso.getStatus(),
                 recurso.getPlaca()
         );
     }

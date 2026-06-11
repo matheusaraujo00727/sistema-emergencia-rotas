@@ -13,6 +13,7 @@ public class AtendimentoMapper {
                 atendimento.getId(),
                 atendimento.getOcorrencia().getId(),
                 atendimento.getEquipe().getId(),
+                atendimento.getRecurso().getId(),
                 atendimento.getDataInicio(),
                 atendimento.getDataFim(),
                 atendimento.getStatus(),

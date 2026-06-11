@@ -12,6 +12,8 @@ public record AtendimentoResponseDTO(
 
         Long equipeId,
 
+        Long recursoId,
+
         LocalDateTime dataInicio,
 
         LocalDateTime dataFim,

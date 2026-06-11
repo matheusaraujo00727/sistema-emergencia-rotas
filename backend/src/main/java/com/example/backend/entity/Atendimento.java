@@ -21,6 +21,10 @@ public class Atendimento {
     @JoinColumn(name = "equipe_id")
     private Equipe equipe;
 
+    @ManyToOne
+    @JoinColumn(name = "recurso_id")
+    private Recurso recurso;
+
     private LocalDateTime dataInicio;
 
     private LocalDateTime dataFim;
@@ -84,5 +88,13 @@ public class Atendimento {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public Recurso getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(Recurso recurso) {
+        this.recurso = recurso;
     }
 }
