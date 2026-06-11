@@ -1,0 +1,62 @@
+<div class="form-page">
+  <div class="page-header">
+    <div>
+      <h2>Novo Atendimento</h2>
+      <p>Vincule uma ocorrência aberta a uma equipe disponível.</p>
+    </div>
+  </div>
+
+  @if (carregando) {
+    <p>Carregando dados...</p>
+  }
+
+  @if (erro) {
+    <p class="erro">{{ erro }}</p>
+  }
+
+  <form class="form-card">
+    <div class="form-group">
+      <label>Ocorrência</label>
+      <select [(ngModel)]="ocorrenciaId" name="ocorrenciaId">
+        <option [ngValue]="undefined">Selecione uma ocorrência</option>
+
+        @for (ocorrencia of ocorrencias; track ocorrencia.id) {
+          <option [ngValue]="ocorrencia.id">
+            #{{ ocorrencia.id }} - {{ ocorrencia.titulo }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Equipe</label>
+      <select [(ngModel)]="equipeId" name="equipeId">
+        <option [ngValue]="undefined">Selecione uma equipe</option>
+
+        @for (equipe of equipes; track equipe.id) {
+          <option [ngValue]="equipe.id">
+            #{{ equipe.id }} - {{ equipe.nome }} - {{ equipe.especialidade }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Observações</label>
+      <textarea
+        rows="5"
+        [(ngModel)]="observacoes"
+        name="observacoes"
+        placeholder="Informe detalhes do atendimento"
+      ></textarea>
+    </div>
+
+    <div class="actions">
+      <a routerLink="/atendimentos" class="btn-secondary">Cancelar</a>
+
+      <button type="button" class="btn-primary" (click)="salvar()" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Salvar Atendimento' }}
+      </button>
+    </div>
+  </form>
+</div>

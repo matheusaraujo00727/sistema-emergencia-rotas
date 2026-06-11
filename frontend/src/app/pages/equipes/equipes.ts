@@ -1,0 +1,49 @@
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule, NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { Equipe } from '../../models/equipe';
+import { EquipeService } from '../../services/equipe';
+
+@Component({
+  selector: 'app-equipes',
+  imports: [NgClass, RouterLink, CommonModule],
+  templateUrl: './equipes.html',
+  styleUrl: './equipes.css',
+})
+export class Equipes implements OnInit {
+  equipes: Equipe[] = [];
+  carregando = false;
+  erro = '';
+
+  constructor(
+    private equipeService: EquipeService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.carregarEquipes();
+  }
+
+  carregarEquipes(): void {
+    this.carregando = true;
+    this.erro = '';
+    this.cdr.detectChanges();
+
+    this.equipeService.listar().subscribe({
+      next: (dados) => {
+        this.equipes = dados;
+        this.carregando = false;
+        this.cdr.detectChanges();
+      },
+      error: (erro) => {
+        console.error('Erro ao carregar equipes:', erro);
+
+        this.erro =
+          erro?.error?.message || erro?.error?.erro || 'Não foi possível carregar as equipes.';
+
+        this.carregando = false;
+        this.cdr.detectChanges();
+      },
+    });
+  }
+}

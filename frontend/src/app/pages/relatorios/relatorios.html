@@ -1,0 +1,64 @@
+<div class="page-header">
+  <div>
+    <h2>Relatórios</h2>
+    <p>Indicadores estratégicos para apoio à tomada de decisão.</p>
+  </div>
+</div>
+
+<div class="advanced-query">
+  <h3>Consulta Avançada</h3>
+
+  <input
+    [(ngModel)]="consulta"
+    name="consulta"
+    placeholder='Ex: parametro.tipo = "ACIDENTE" AND parametro.setor = "NORTE"'
+  />
+
+  <button (click)="validarConsulta()">Validar Consulta</button>
+
+  @if (resultadoConsulta) {
+    <p>{{ resultadoConsulta }}</p>
+  }
+</div>
+
+@if (carregando) {
+  <p>Carregando relatórios...</p>
+}
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
+@if (relatorio) {
+  <div class="report-grid">
+    <div class="report-card">
+      <span>Total de Ocorrências</span>
+      <strong>{{ relatorio.totalOcorrencias }}</strong>
+    </div>
+
+    <div class="report-card danger">
+      <span>Ocorrências Abertas</span>
+      <strong>{{ relatorio.ocorrenciasAbertas }}</strong>
+    </div>
+
+    <div class="report-card success">
+      <span>Ocorrências Finalizadas</span>
+      <strong>{{ relatorio.ocorrenciasFinalizadas }}</strong>
+    </div>
+
+    <div class="report-card">
+      <span>Recursos Disponíveis</span>
+      <strong>{{ relatorio.recursosDisponiveis }}</strong>
+    </div>
+
+    <div class="report-card">
+      <span>Equipes Disponíveis</span>
+      <strong>{{ relatorio.equipesDisponiveis }}</strong>
+    </div>
+
+    <div class="report-card">
+      <span>Tempo Médio de Resposta</span>
+      <strong>{{ relatorio.tempoMedioResposta }} min</strong>
+    </div>
+  </div>
+}

@@ -1,0 +1,46 @@
+<div class="page-header">
+  <div>
+    <h2>Atendimentos</h2>
+    <p>Acompanhamento dos atendimentos vinculados às ocorrências.</p>
+  </div>
+
+  <a routerLink="/atendimentos/novo" class="btn-primary">Novo Atendimento</a>
+</div>
+
+@if (carregando) {
+  <p>Carregando atendimentos...</p>
+}
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
+<div class="table-card">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ocorrência</th>
+      <th>Equipe</th>
+      <th>Status</th>
+      <th>Início</th>
+      <th>Fim</th>
+      <th>Observações</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      @for (atendimento of atendimentos; track atendimento.id) {
+        <tr>
+          <td>#{{ atendimento.id }}</td>
+          <td>{{ atendimento.ocorrencia?.titulo || 'Não informada' }}</td>
+          <td>{{ atendimento.equipe?.nome || 'Não informada' }}</td>
+          <td>{{ atendimento.status }}</td>
+          <td>{{ atendimento.dataInicio || '-' }}</td>
+          <td>{{ atendimento.dataFim || '-' }}</td>
+          <td>{{ atendimento.observacoes || '-' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

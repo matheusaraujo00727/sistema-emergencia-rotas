@@ -1,0 +1,38 @@
+<div class="page-header">
+  <div>
+    <h2>Equipes Operacionais</h2>
+    <p>Gerenciamento das equipes responsáveis pelos atendimentos.</p>
+  </div>
+
+  <a routerLink="/equipes/nova" class="btn-primary">Nova Equipe</a>
+</div>
+
+@if (carregando) {
+  <p>Carregando equipes...</p>
+}
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
+<div class="cards-grid">
+  @for (equipe of equipes; track equipe.id) {
+    <div class="team-card">
+      <div class="team-header">
+        <span class="team-id">Equipe #{{ equipe.id }}</span>
+
+        <span class="chip" [ngClass]="equipe.status.toLowerCase()">
+          {{ equipe.status }}
+        </span>
+      </div>
+
+      <h3>{{ equipe.nome }}</h3>
+
+      <p>Especialidade: {{ equipe.especialidade }}</p>
+
+      <div class="members">
+        {{ equipe.quantidadeMembros }} membros
+      </div>
+    </div>
+  }
+</div>

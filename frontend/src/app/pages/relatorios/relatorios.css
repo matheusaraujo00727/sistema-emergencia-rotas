@@ -1,0 +1,54 @@
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-size: 30px;
+  color: #131b2e;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.report-card {
+  background: white;
+  border: 1px solid #d3d8e0;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.report-card span {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.report-card strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 34px;
+  color: #131b2e;
+}
+
+.report-card.danger {
+  border-left: 5px solid #bb0112;
+}
+
+.report-card.success {
+  border-left: 5px solid #009842;
+}
+
+.erro {
+  color: #bb0112;
+  font-weight: 700;
+}
