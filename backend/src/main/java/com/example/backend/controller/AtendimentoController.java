@@ -70,5 +70,24 @@ public class AtendimentoController {
                 .body(AtendimentoMapper.toResponseDTO(salvo));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<AtendimentoResponseDTO> atualizar(
+            @PathVariable Long id,
+            @RequestBody AtendimentoRequestDTO dto
+    ) {
+        Atendimento atendimento = new Atendimento();
+
+        atendimento.setDataInicio(dto.dataInicio());
+        atendimento.setDataFim(dto.dataFim());
+        atendimento.setStatus(dto.status());
+        atendimento.setObservacoes(dto.observacoes());
+
+        Atendimento atualizado = atendimentoService.atualizar(id, atendimento);
+
+        return ResponseEntity.ok(
+                AtendimentoMapper.toResponseDTO(atualizado)
+        );
+    }
+
 
 }

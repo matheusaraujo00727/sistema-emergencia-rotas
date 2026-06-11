@@ -10,6 +10,8 @@ import { EquipeForm } from './pages/equipe-form/equipe-form';
 import { RecursoForm } from './pages/recurso-form/recurso-form';
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
+import { Atendimentos } from './pages/atendimentos/atendimentos';
+import { AtendimentoForm } from './pages/atendimento-form/atendimento-form';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -23,6 +25,9 @@ export const routes: Routes = [
   { path: 'relatorios', component: Relatorios, canActivate: [authGuard, adminGuard] },
   { path: 'equipes/nova', component: EquipeForm, canActivate: [authGuard, adminGuard] },
   { path: 'recursos/novo', component: RecursoForm, canActivate: [authGuard, adminGuard] },
+
+  { path: 'atendimentos', component: Atendimentos, canActivate: [authGuard] },
+  { path: 'atendimentos/novo', component: AtendimentoForm, canActivate: [authGuard, adminGuard] },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },

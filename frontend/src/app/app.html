@@ -11,12 +11,14 @@
         <a routerLink="/ocorrencias">Ocorrências</a>
         <a routerLink="/ocorrencias/nova">Cadastrar Ocorrência</a>
         <a routerLink="/equipes">Equipes</a>
+        <a routerLink="/atendimentos">Atendimentos</a>
 
         @if (authService.isAdmin()) {
           <a routerLink="/equipes/nova">Cadastrar Equipe</a>
           <a routerLink="/recursos">Recursos</a>
           <a routerLink="/recursos/novo">Cadastrar Recurso</a>
           <a routerLink="/relatorios">Relatórios</a>
+          <a routerLink="/atendimentos/novo">Cadastrar Atendimento</a>
         }
 
         <button type="button" class="logout-btn" (click)="sair()">
