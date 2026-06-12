@@ -1,0 +1,80 @@
+<div class="form-page">
+  <div class="page-header">
+    <div>
+      <h2>{{ modoEdicao ? 'Editar Recurso' : 'Novo Recurso' }}</h2>
+      <p>Cadastre um recurso operacional para atendimento.</p>
+    </div>
+  </div>
+
+  @if (erro) {
+    <p class="erro">{{ erro }}</p>
+  }
+
+  <form class="form-card">
+
+    <div class="card-title">
+      Informações do Recurso
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Nome</label>
+
+        <input
+          [(ngModel)]="nome"
+          name="nome"
+          placeholder="Ex: Ambulância Alfa"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Tipo</label>
+
+        <select
+          [(ngModel)]="tipo"
+          name="tipo"
+        >
+          <option value="AMBULANCIA">Ambulância</option>
+          <option value="VIATURA">Viatura</option>
+          <option value="HELICOPTERO">Helicóptero</option>
+          <option value="EQUIPAMENTO_MEDICO">Equipamento Médico</option>
+          <option value="OUTRO">Outro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Placa</label>
+
+        <input
+          [(ngModel)]="placa"
+          name="placa"
+          placeholder="AAA1A11"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Disponibilidade</label>
+
+        <select [(ngModel)]="status" name="status">
+          <option value="DISPONIVEL">Disponível</option>
+          <option value="INDISPONIVEL">Indisponível</option>
+        </select>
+      </div>
+
+    </div>
+
+    @if (erro) {
+      <div class="error-box">
+        {{ erro }}
+      </div>
+    }
+
+    <div class="actions">
+      <a routerLink="/recursos" class="btn-secondary">Cancelar</a>
+      <button type="button" class="btn-primary" (click)="salvar()" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Salvar Recurso' }}
+      </button>
+    </div>
+  </form>
+</div>
