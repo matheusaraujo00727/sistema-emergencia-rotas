@@ -22,6 +22,7 @@
       <th>ID</th>
       <th>Ocorrência</th>
       <th>Equipe</th>
+      <th>Recurso</th>
       <th>Status</th>
       <th>Início</th>
       <th>Fim</th>
@@ -33,10 +34,11 @@
       @for (atendimento of atendimentos; track atendimento.id) {
         <tr>
           <td>#{{ atendimento.id }}</td>
-          <td>{{ atendimento.ocorrencia?.titulo || 'Não informada' }}</td>
-          <td>{{ atendimento.equipe?.nome || 'Não informada' }}</td>
+          <td>{{ atendimento.ocorrenciaTitulo }}</td>
+          <td>{{ atendimento.equipeNome }}</td>
+          <td>{{ atendimento.recursoNome }}</td>
           <td>{{ atendimento.status }}</td>
-          <td>{{ atendimento.dataInicio || '-' }}</td>
+          <td>{{ atendimento.dataInicio }}</td>
           <td>{{ atendimento.dataFim || '-' }}</td>
           <td>{{ atendimento.observacoes || '-' }}</td>
         </tr>

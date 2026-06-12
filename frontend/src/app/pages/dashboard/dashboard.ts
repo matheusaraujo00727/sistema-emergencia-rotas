@@ -67,7 +67,7 @@ export class Dashboard implements OnInit {
 
             this.ocorrenciasAbertas = ocorrencias.filter((item) => item.status === 'ABERTA').length;
 
-            this.recursosDisponiveis = recursos.filter((item) => item.disponivel === true).length;
+            this.recursosDisponiveis = recursos.filter((item) => item.status === 'DISPONIVEL',).length;
 
             this.atendimentosAndamento = ocorrencias.filter(
               (item) => item.status === 'EM_ATENDIMENTO',

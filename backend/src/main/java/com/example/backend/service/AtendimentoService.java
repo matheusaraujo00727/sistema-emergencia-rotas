@@ -33,7 +33,7 @@ public class AtendimentoService {
 
             try {
 
-                Thread.sleep(2000);
+                Thread.sleep(10000);
 
                 Atendimento atendimento =
                         atendimentoRepository.findById(atendimentoId)
@@ -45,7 +45,7 @@ public class AtendimentoService {
 
                 atendimentoRepository.save(atendimento);
 
-                Thread.sleep(7000);
+                Thread.sleep(20000);
 
                 atendimento.setStatus(
                         StatusAtendimento.CONCLUIDO

@@ -9,10 +9,13 @@ public record AtendimentoResponseDTO(
         Long id,
 
         Long ocorrenciaId,
+        String ocorrenciaTitulo,
 
         Long equipeId,
+        String equipeNome,
 
         Long recursoId,
+        String recursoNome,
 
         LocalDateTime dataInicio,
 

@@ -19,7 +19,12 @@ export class RecursoService {
     return this.http.get<Recurso>(`${this.apiUrl}/${id}`);
   }
 
-  salvar(recurso: Recurso): Observable<Recurso> {
+  salvar(recurso: {
+    nome: string;
+    tipo: string;
+    status: 'DISPONIVEL' | 'INDISPONIVEL';
+    placa: string;
+  }): Observable<Recurso> {
     return this.http.post<Recurso>(this.apiUrl, recurso);
   }
 

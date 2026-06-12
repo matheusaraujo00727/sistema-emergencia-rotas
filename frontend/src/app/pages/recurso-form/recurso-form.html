@@ -56,12 +56,9 @@
       <div class="form-group">
         <label>Disponibilidade</label>
 
-        <select
-          [(ngModel)]="disponivel"
-          name="disponivel"
-        >
-          <option [ngValue]="true">Disponível</option>
-          <option [ngValue]="false">Indisponível</option>
+        <select [(ngModel)]="status" name="status">
+          <option value="DISPONIVEL">Disponível</option>
+          <option value="INDISPONIVEL">Indisponível</option>
         </select>
       </div>
 

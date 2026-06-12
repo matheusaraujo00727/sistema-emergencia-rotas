@@ -21,7 +21,7 @@
       <div class="resource-header">
         <span class="code">#{{ recurso.id }}</span>
 
-        @if (recurso.disponivel) {
+        @if (recurso.status === 'DISPONIVEL') {
           <span class="chip disponivel">Disponível</span>
         } @else {
           <span class="chip indisponivel">Indisponível</span>

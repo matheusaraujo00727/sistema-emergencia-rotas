@@ -29,6 +29,19 @@
     </div>
 
     <div class="form-group">
+      <label>Recurso</label>
+      <select [(ngModel)]="recursoId" name="recursoId">
+        <option [ngValue]="undefined">Selecione um recurso</option>
+
+        @for (recurso of recursos; track recurso.id) {
+          <option [ngValue]="recurso.id">
+            #{{ recurso.id }} - {{ recurso.nome }} - {{ recurso.tipo }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
       <label>Equipe</label>
       <select [(ngModel)]="equipeId" name="equipeId">
         <option [ngValue]="undefined">Selecione uma equipe</option>

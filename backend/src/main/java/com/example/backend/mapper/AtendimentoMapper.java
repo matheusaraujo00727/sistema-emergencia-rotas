@@ -11,9 +11,16 @@ public class AtendimentoMapper {
 
         return new AtendimentoResponseDTO(
                 atendimento.getId(),
+
                 atendimento.getOcorrencia().getId(),
+                atendimento.getOcorrencia().getTitulo(),
+
                 atendimento.getEquipe().getId(),
+                atendimento.getEquipe().getNome(),
+
                 atendimento.getRecurso().getId(),
+                atendimento.getRecurso().getNome(),
+
                 atendimento.getDataInicio(),
                 atendimento.getDataFim(),
                 atendimento.getStatus(),

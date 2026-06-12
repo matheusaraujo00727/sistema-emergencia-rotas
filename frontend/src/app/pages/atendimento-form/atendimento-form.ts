@@ -6,6 +6,8 @@ import { OcorrenciaService } from '../../services/ocorrencia';
 import { EquipeService } from '../../services/equipe';
 import { Ocorrencia } from '../../models/ocorrencia';
 import { Equipe } from '../../models/equipe';
+import { RecursoService } from '../../services/recurso';
+import { Recurso } from '../../models/recurso';
 
 @Component({
   selector: 'app-atendimento-form',
@@ -17,7 +19,9 @@ import { Equipe } from '../../models/equipe';
 export class AtendimentoForm implements OnInit {
   ocorrencias: Ocorrencia[] = [];
   equipes: Equipe[] = [];
+  recursos: Recurso[] = [];
 
+  recursoId?: number;
   ocorrenciaId?: number;
   equipeId?: number;
   status: 'PENDENTE' | 'EM_ANDAMENTO' | 'CONCLUIDO' = 'PENDENTE';
@@ -33,6 +37,7 @@ export class AtendimentoForm implements OnInit {
     private equipeService: EquipeService,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private recursoService: RecursoService,
   ) {}
 
   ngOnInit(): void {
@@ -67,13 +72,26 @@ export class AtendimentoForm implements OnInit {
         this.cdr.detectChanges();
       },
     });
+    this.recursoService.listar().subscribe({
+      next: (recursos) => {
+        this.recursos = recursos.filter((item) => item.status === 'DISPONIVEL');
+
+        this.carregando = false;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.erro = 'Não foi possível carregar os recursos.';
+        this.carregando = false;
+        this.cdr.detectChanges();
+      },
+    });
   }
 
   salvar(): void {
     this.erro = '';
 
-    if (!this.ocorrenciaId || !this.equipeId) {
-      this.erro = 'Selecione uma ocorrência e uma equipe.';
+    if (!this.ocorrenciaId || !this.equipeId || !this.recursoId) {
+      this.erro = 'Selecione uma ocorrência, uma equipe e um recurso.';
       return;
     }
 
@@ -83,7 +101,7 @@ export class AtendimentoForm implements OnInit {
       .salvar({
         ocorrenciaId: Number(this.ocorrenciaId),
         equipeId: Number(this.equipeId),
-        status: this.status,
+        recursoId: Number(this.recursoId),
         observacoes: this.observacoes,
       })
       .subscribe({

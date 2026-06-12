@@ -12,9 +12,9 @@ import { RecursoService } from '../../services/recurso';
 })
 export class RecursoForm {
   nome = '';
-  tipo = 'AMBULANCIA';
+  tipo: 'AMBULANCIA' | 'VIATURA' | 'HELICOPTERO' | 'EQUIPAMENTO_MEDICO' | 'OUTRO' = 'AMBULANCIA';
   placa = '';
-  disponivel = true;
+  status: 'DISPONIVEL' | 'INDISPONIVEL' = 'DISPONIVEL';
 
   salvando = false;
   erro = '';
@@ -40,8 +40,8 @@ export class RecursoForm {
       .salvar({
         nome: this.nome,
         tipo: this.tipo,
+        status: this.status,
         placa: this.placa,
-        disponivel: this.disponivel,
       })
       .subscribe({
         next: () => {

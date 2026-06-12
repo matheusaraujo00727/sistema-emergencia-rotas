@@ -14,6 +14,10 @@ public class Usuario {
     private Long id;
 
     @NotBlank
+    @Pattern(
+            regexp = "^[A-Za-zÀ-ÿ\s]{3,100}$",
+            message = "O nome deve conter apenas letras e espaços, entre 3 e 100 caracteres"
+    )
     private String nome;
 
     @Enumerated(EnumType.STRING)

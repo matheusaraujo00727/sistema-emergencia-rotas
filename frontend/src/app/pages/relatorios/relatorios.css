@@ -13,42 +13,83 @@
   color: #6b7280;
 }
 
-.report-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.report-card {
+.panel {
   background: white;
   border: 1px solid #d3d8e0;
   border-radius: 14px;
   padding: 24px;
+  margin-bottom: 24px;
 }
 
-.report-card span {
-  display: block;
-  color: #6b7280;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.report-card strong {
-  display: block;
-  margin-top: 10px;
-  font-size: 34px;
+.panel-header h3 {
+  margin: 0;
   color: #131b2e;
 }
 
-.report-card.danger {
-  border-left: 5px solid #bb0112;
+.panel-header p {
+  color: #6b7280;
+  margin-top: 6px;
 }
 
-.report-card.success {
-  border-left: 5px solid #009842;
+.query-box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.erro {
-  color: #bb0112;
-  font-weight: 700;
+.query-box label {
+  font-weight: 800;
+  color: #131b2e;
+}
+
+.query-box input {
+  border: 1px solid #c6c6cd;
+  border-radius: 8px;
+  padding: 13px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  align-self: flex-start;
+  background: #bb0112;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.result-box {
+  margin-top: 18px;
+  background: #e5eeff;
+  color: #131b2e;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  background: #e5eeff;
+  text-align: left;
+  padding: 14px;
+}
+
+td {
+  padding: 14px;
+  border-top: 1px solid #eef1f5;
+}
+
+.grammar pre {
+  background: #f8fafc;
+  padding: 18px;
+  border-radius: 10px;
+  overflow-x: auto;
 }

@@ -1,64 +1,66 @@
 <div class="page-header">
   <div>
     <h2>Relatórios</h2>
-    <p>Indicadores estratégicos para apoio à tomada de decisão.</p>
+    <p>Consulta avançada para análise de dados operacionais.</p>
   </div>
 </div>
 
-<div class="advanced-query">
-  <h3>Consulta Avançada</h3>
+<section class="panel">
+  <div class="panel-header">
+    <h3>Consulta Avançada</h3>
+    <p>Digite comandos personalizados para validar filtros de relatório.</p>
+  </div>
 
-  <input
-    [(ngModel)]="consulta"
-    name="consulta"
-    placeholder='Ex: parametro.tipo = "ACIDENTE" AND parametro.setor = "NORTE"'
-  />
+  <div class="query-box">
+    <label>Comando</label>
 
-  <button (click)="validarConsulta()">Validar Consulta</button>
+    <input
+      [(ngModel)]="consulta"
+      name="consulta"
+      placeholder='Ex: parametro.tipo = "ACIDENTE" AND parametro.status = "ABERTA"'
+    />
+
+    <button type="button" class="btn-primary" (click)="validarConsulta()">
+      Validar Consulta
+    </button>
+  </div>
 
   @if (resultadoConsulta) {
-    <p>{{ resultadoConsulta }}</p>
+    <div class="result-box">
+      {{ resultadoConsulta }}
+    </div>
   }
-</div>
 
-@if (carregando) {
-  <p>Carregando relatórios...</p>
-}
+  @if (tokens.length > 0) {
+    <table>
+      <thead>
+      <tr>
+        <th>Tipo do Token</th>
+        <th>Valor</th>
+      </tr>
+      </thead>
 
-@if (erro) {
-  <p class="erro">{{ erro }}</p>
-}
+      <tbody>
+        @for (token of tokens; track token.valor) {
+          <tr>
+            <td>{{ token.tipo }}</td>
+            <td>{{ token.valor }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>
 
-@if (relatorio) {
-  <div class="report-grid">
-    <div class="report-card">
-      <span>Total de Ocorrências</span>
-      <strong>{{ relatorio.totalOcorrencias }}</strong>
-    </div>
-
-    <div class="report-card danger">
-      <span>Ocorrências Abertas</span>
-      <strong>{{ relatorio.ocorrenciasAbertas }}</strong>
-    </div>
-
-    <div class="report-card success">
-      <span>Ocorrências Finalizadas</span>
-      <strong>{{ relatorio.ocorrenciasFinalizadas }}</strong>
-    </div>
-
-    <div class="report-card">
-      <span>Recursos Disponíveis</span>
-      <strong>{{ relatorio.recursosDisponiveis }}</strong>
-    </div>
-
-    <div class="report-card">
-      <span>Equipes Disponíveis</span>
-      <strong>{{ relatorio.equipesDisponiveis }}</strong>
-    </div>
-
-    <div class="report-card">
-      <span>Tempo Médio de Resposta</span>
-      <strong>{{ relatorio.tempoMedioResposta }} min</strong>
-    </div>
+<section class="panel grammar">
+  <div class="panel-header">
+    <h3>Gramática Livre de Contexto</h3>
   </div>
-}
+
+  <pre>
+&lt;consulta&gt; ::= &lt;condicao&gt; | &lt;condicao&gt; AND &lt;consulta&gt;
+&lt;condicao&gt; ::= parametro.&lt;campo&gt; = "&lt;valor&gt;"
+&lt;campo&gt; ::= letra | letra &lt;campo&gt;
+&lt;valor&gt; ::= caractere | caractere &lt;valor&gt;
+  </pre>
+</section>
