@@ -78,3 +78,24 @@ td {
   background: #fee2e2;
   color: #bb0112;
 }
+
+.btn-edit,
+.btn-danger {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.btn-edit {
+  background: #e5eeff;
+  color: #131b2e;
+}
+
+.btn-danger {
+  background: #bb0112;
+  color: white;
+}

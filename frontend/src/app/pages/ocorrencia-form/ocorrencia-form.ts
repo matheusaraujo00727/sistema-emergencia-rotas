@@ -1,8 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { OcorrenciaService } from '../../services/ocorrencia';
 import { CommonModule } from '@angular/common';
+import { OcorrenciaService } from '../../services/ocorrencia';
 
 @Component({
   selector: 'app-ocorrencia-form',
@@ -11,12 +11,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './ocorrencia-form.html',
   styleUrl: './ocorrencia-form.css',
 })
-export class OcorrenciaForm {
+export class OcorrenciaForm implements OnInit {
   titulo = '';
-  tipo: 'ACIDENTE' | 'INCENDIO' | 'EMERGENCIA_MEDICA' | 'DESASTRE_NATURAL' | 'OUTRO' = 'ACIDENTE';
+  tipo: string = 'ACIDENTE';
+  status: 'ABERTA' | 'EM_ATENDIMENTO' | 'FINALIZADA' | 'CANCELADA' = 'ABERTA';
   prioridade: 'BAIXA' | 'MEDIA' | 'ALTA' | 'CRITICA' = 'BAIXA';
   localizacao = '';
   descricao = '';
+
+  modoEdicao = false;
+  idOcorrencia?: number;
 
   salvando = false;
   erro = '';
@@ -25,21 +29,52 @@ export class OcorrenciaForm {
     private ocorrenciaService: OcorrenciaService,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute,
   ) {}
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.modoEdicao = true;
+      this.idOcorrencia = Number(id);
+
+      this.ocorrenciaService.buscarPorId(this.idOcorrencia).subscribe({
+        next: (ocorrencia) => {
+          this.titulo = ocorrencia.titulo;
+          this.tipo = ocorrencia.tipo;
+          this.prioridade = ocorrencia.prioridade;
+          this.status = ocorrencia.status || 'ABERTA';
+          this.localizacao = ocorrencia.localizacao;
+          this.descricao = ocorrencia.descricao || '';
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          this.erro = 'Não foi possível carregar a ocorrência.';
+          this.cdr.detectChanges();
+        },
+      });
+    }
+  }
 
   salvar(): void {
     this.salvando = true;
     this.erro = '';
 
-    const novaOcorrencia = {
+    const ocorrencia = {
       titulo: this.titulo,
       tipo: this.tipo,
       prioridade: this.prioridade,
+      status: this.status,
       localizacao: this.localizacao,
       descricao: this.descricao,
     };
 
-    this.ocorrenciaService.salvar(novaOcorrencia).subscribe({
+    const requisicao = this.modoEdicao
+      ? this.ocorrenciaService.atualizar(this.idOcorrencia!, ocorrencia)
+      : this.ocorrenciaService.salvar(ocorrencia);
+
+    requisicao.subscribe({
       next: () => {
         this.salvando = false;
         this.router.navigate(['/ocorrencias']);
@@ -47,7 +82,9 @@ export class OcorrenciaForm {
       },
       error: () => {
         this.salvando = false;
-        this.erro = 'Não foi possível salvar a ocorrência.';
+        this.erro = this.modoEdicao
+          ? 'Não foi possível atualizar a ocorrência.'
+          : 'Não foi possível salvar a ocorrência.';
         this.cdr.detectChanges();
       },
     });

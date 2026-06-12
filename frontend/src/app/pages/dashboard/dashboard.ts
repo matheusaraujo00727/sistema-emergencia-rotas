@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OcorrenciaService } from '../../services/ocorrencia';
 import { RecursoService } from '../../services/recurso';
 import { EquipeService } from '../../services/equipe';
+import { AtendimentoService } from '../../services/atendimento';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,6 @@ export class Dashboard implements OnInit {
   atendimentosAndamento = 0;
   tempoMedioResposta = 0;
 
-
   alertasPrioritarios: any[] = [];
   ultimasOcorrencias: any[] = [];
 
@@ -31,10 +31,33 @@ export class Dashboard implements OnInit {
     private recursoService: RecursoService,
     private equipeService: EquipeService,
     private cdr: ChangeDetectorRef,
+    private atendimentoService: AtendimentoService,
   ) {}
 
   ngOnInit(): void {
     this.carregarDashboard();
+  }
+
+  calcularTempoMedio(atendimentos: any[]): void {
+    const concluidos = atendimentos.filter(
+      (item) => item.status === 'CONCLUIDO' && item.dataInicio && item.dataFim,
+    );
+
+    if (concluidos.length === 0) {
+      this.tempoMedioResposta = 0;
+      return;
+    }
+
+    const totalMinutos = concluidos.reduce((total, item) => {
+      const inicio = new Date(item.dataInicio).getTime();
+      const fim = new Date(item.dataFim).getTime();
+
+      const diferencaMinutos = Math.max(0, (fim - inicio) / 60000);
+
+      return total + diferencaMinutos;
+    }, 0);
+
+    this.tempoMedioResposta = Math.round(totalMinutos / concluidos.length);
   }
 
   carregarDashboard(): void {
@@ -52,14 +75,10 @@ export class Dashboard implements OnInit {
             (item) =>
               item.prioridade === 'CRITICA' ||
               item.prioridade === 'ALTA' ||
-              item.prioridade === 'MEDIA',
+              item.prioridade === 'MEDIA' ||
+              item.prioridade === 'BAIXA',
           )
           .slice(0, 5);
-
-        this.alertasPrioritarios = ocorrencias
-          .filter((item) => item.prioridade === 'CRITICA' || item.prioridade === 'ALTA').slice(0, 4);
-
-        this.tempoMedioResposta = this.atendimentosAndamento > 0 ? 8 : 0;
 
         this.recursoService.listar().subscribe({
           next: (recursos) => {
@@ -67,7 +86,9 @@ export class Dashboard implements OnInit {
 
             this.ocorrenciasAbertas = ocorrencias.filter((item) => item.status === 'ABERTA').length;
 
-            this.recursosDisponiveis = recursos.filter((item) => item.status === 'DISPONIVEL',).length;
+            this.recursosDisponiveis = recursos.filter(
+              (item) => item.status === 'DISPONIVEL',
+            ).length;
 
             this.atendimentosAndamento = ocorrencias.filter(
               (item) => item.status === 'EM_ATENDIMENTO',
@@ -83,8 +104,20 @@ export class Dashboard implements OnInit {
                   (item: any) => item.ativa === true || item.status === 'DISPONIVEL',
                 ).length;
 
-                this.carregando = false;
-                this.cdr.detectChanges();
+                this.atendimentoService.listar().subscribe({
+                  next: (atendimentos) => {
+                    this.calcularTempoMedio(atendimentos);
+
+                    this.carregando = false;
+                    this.cdr.detectChanges();
+                  },
+                  error: () => {
+                    this.tempoMedioResposta = 0;
+
+                    this.carregando = false;
+                    this.cdr.detectChanges();
+                  },
+                });
               },
 
               error: () => {

@@ -84,13 +84,14 @@
 .map-placeholder {
   height: 340px;
   position: relative;
-  display: grid;
-  place-items: center;
-  background-image: radial-gradient(circle at 2px 2px, #cbd5e1 1px, transparent 0);
-  background-size: 24px 24px;
-  color: #6b7280;
-  font-weight: 700;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(19, 27, 46, 0.08), rgba(187, 1, 18, 0.06)),
+    radial-gradient(circle at 2px 2px, #cbd5e1 1px, transparent 0);
+  background-size: auto, 24px 24px;
+  border-radius: 0 0 14px 14px;
 }
+
 
 .pin {
   position: absolute;
@@ -98,7 +99,22 @@
   height: 18px;
   border-radius: 50%;
   border: 3px solid white;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+  z-index: 5;
 }
+
+.map-placeholder p {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #131b2e;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
 
 .pin-red {
   background: #dc2626;
@@ -113,7 +129,7 @@
 }
 
 .pin-blue {
-  background: #2563eb;
+  background: #999;
 }
 
 .alert-list {

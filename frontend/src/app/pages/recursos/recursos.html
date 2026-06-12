@@ -35,9 +35,17 @@
         Placa: {{ recurso.placa || 'Não informada' }}
       </div>
 
-      <button type="button" class="btn-danger" (click)="excluir(recurso.id)">
-        Excluir
-      </button>
+      @if (authService.isAdmin()) {
+        <div class="card-actions">
+          <a [routerLink]="['/recursos/editar', recurso.id]" class="btn-edit">
+            Editar
+          </a>
+
+          <button type="button" class="btn-danger" (click)="excluir(recurso.id)">
+            Excluir
+          </button>
+        </div>
+      }
     </div>
   }
 </div>

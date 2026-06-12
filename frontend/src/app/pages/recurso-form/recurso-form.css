@@ -97,3 +97,10 @@ textarea:focus {
   background: #e5eeff;
   color: #131b2e;
 }
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+

@@ -112,3 +112,24 @@
   text-decoration: none;
   font-weight: 700;
 }
+
+.btn-edit,
+.btn-danger {
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #e5eeff;
+  color: #131b2e;
+}
+
+.btn-danger {
+  background: #bb0112;
+  color: white;
+}
+

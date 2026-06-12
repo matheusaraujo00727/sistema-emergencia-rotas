@@ -72,11 +72,14 @@ public class OcorrenciaController {
         Ocorrencia ocorrencia =
                 OcorrenciaMapper.toEntity(dto);
 
+
+
         Ocorrencia atualizada =
                 ocorrenciaService.atualizar(
                         id,
                         ocorrencia
                 );
+
 
         return ResponseEntity.ok(
                 OcorrenciaMapper.toResponseDTO(

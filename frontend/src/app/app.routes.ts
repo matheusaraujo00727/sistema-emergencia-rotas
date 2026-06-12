@@ -17,14 +17,20 @@ export const routes: Routes = [
   { path: 'login', component: Login },
 
   { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
+
   { path: 'ocorrencias', component: Ocorrencias, canActivate: [authGuard] },
   { path: 'ocorrencias/nova', component: OcorrenciaForm, canActivate: [authGuard] },
+  { path: 'ocorrencias/editar/:id', component: OcorrenciaForm },
+
   { path: 'equipes', component: Equipes, canActivate: [authGuard] },
+  { path: 'equipes/editar/:id', component: EquipeForm, canActivate: [authGuard, adminGuard] },
+  { path: 'equipes/nova', component: EquipeForm, canActivate: [authGuard, adminGuard] },
 
   { path: 'recursos', component: Recursos, canActivate: [authGuard, adminGuard] },
-  { path: 'relatorios', component: Relatorios, canActivate: [authGuard, adminGuard] },
-  { path: 'equipes/nova', component: EquipeForm, canActivate: [authGuard, adminGuard] },
   { path: 'recursos/novo', component: RecursoForm, canActivate: [authGuard, adminGuard] },
+  { path: 'recursos/editar/:id', component: RecursoForm, canActivate: [authGuard, adminGuard] },
+
+  { path: 'relatorios', component: Relatorios, canActivate: [authGuard, adminGuard] },
 
   { path: 'atendimentos', component: Atendimentos, canActivate: [authGuard] },
   { path: 'atendimentos/novo', component: AtendimentoForm, canActivate: [authGuard, adminGuard] },

@@ -33,6 +33,18 @@
       <div class="members">
         {{ equipe.quantidadeMembros }} membros
       </div>
+
+      @if (authService.isAdmin()) {
+        <div class="card-actions">
+          <a [routerLink]="['/equipes/editar', equipe.id]" class="btn-edit">
+            Editar
+          </a>
+
+          <button type="button" class="btn-danger" (click)="excluir(equipe.id)">
+            Excluir
+          </button>
+        </div>
+      }
     </div>
   }
 </div>

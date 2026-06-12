@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Ocorrencia } from '../../models/ocorrencia';
 import { OcorrenciaService } from '../../services/ocorrencia';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-ocorrencias',
@@ -19,10 +20,31 @@ export class Ocorrencias implements OnInit {
   constructor(
     private ocorrenciaService: OcorrenciaService,
     private cdr: ChangeDetectorRef,
+    public authService: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.carregarOcorrencias();
+  }
+
+  excluir(id?: number): void {
+    if (!id) return;
+
+    const confirmar = confirm('Deseja realmente excluir esta ocorrência?');
+
+    if (!confirmar) return;
+
+    this.ocorrenciaService.excluir(id).subscribe({
+      next: () => {
+        this.carregarOcorrencias();
+      },
+      error: (erro) => {
+        console.error('Erro ao excluir ocorrência:', erro);
+        this.erro =
+          erro?.error?.message || erro?.error?.erro || 'Não foi possível excluir a ocorrência.';
+        this.cdr.detectChanges();
+      },
+    });
   }
 
   carregarOcorrencias(): void {

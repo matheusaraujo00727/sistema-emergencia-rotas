@@ -85,9 +85,11 @@ public class OcorrenciaService {
                 ocorrenciaAtualizada.getPrioridade()
         );
 
-        ocorrenciaExistente.setStatus(
-                ocorrenciaAtualizada.getStatus()
-        );
+        if (ocorrenciaAtualizada.getStatus() != null) {
+            ocorrenciaExistente.setStatus(
+                    ocorrenciaAtualizada.getStatus()
+            );
+        }
 
         ocorrenciaExistente.setDescricao(
                 ocorrenciaAtualizada.getDescricao()

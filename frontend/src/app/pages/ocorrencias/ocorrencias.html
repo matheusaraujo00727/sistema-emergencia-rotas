@@ -26,6 +26,10 @@
       <th>Status</th>
       <th>Localização</th>
       <th>Registro</th>
+
+      @if (authService.isAdmin()) {
+        <th>Ações</th>
+      }
     </tr>
     </thead>
 
@@ -39,6 +43,18 @@
           <td>{{ item.status }}</td>
           <td>{{ item.localizacao }}</td>
           <td>{{ item.dataAbertura }}</td>
+
+          @if (authService.isAdmin()) {
+            <td>
+              <a [routerLink]="['/ocorrencias/editar', item.id]" class="btn-edit">
+                Editar
+              </a>
+
+              <button type="button" class="btn-danger" (click)="excluir(item.id)">
+                Excluir
+              </button>
+            </td>
+          }
         </tr>
       }
     </tbody>

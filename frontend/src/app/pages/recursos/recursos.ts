@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { RecursoService } from '../../services/recurso';
 import { Recurso } from '../../models/recurso';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-recursos',
@@ -19,6 +20,7 @@ export class Recursos implements OnInit {
   constructor(
     private recursoService: RecursoService,
     private cdr: ChangeDetectorRef,
+    public authService: AuthService,
   ) {}
 
   ngOnInit(): void {
