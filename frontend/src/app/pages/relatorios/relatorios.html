@@ -1,0 +1,66 @@
+<div class="page-header">
+  <div>
+    <h2>Relatórios</h2>
+    <p>Consulta avançada para análise de dados operacionais.</p>
+  </div>
+</div>
+
+<section class="panel">
+  <div class="panel-header">
+    <h3>Consulta Avançada</h3>
+    <p>Digite comandos personalizados para validar filtros de relatório.</p>
+  </div>
+
+  <div class="query-box">
+    <label>Comando</label>
+
+    <input
+      [(ngModel)]="consulta"
+      name="consulta"
+      placeholder='Ex: parametro.tipo = "ACIDENTE" AND parametro.status = "ABERTA"'
+    />
+
+    <button type="button" class="btn-primary" (click)="validarConsulta()">
+      Validar Consulta
+    </button>
+  </div>
+
+  @if (resultadoConsulta) {
+    <div class="result-box">
+      {{ resultadoConsulta }}
+    </div>
+  }
+
+  @if (tokens.length > 0) {
+    <table>
+      <thead>
+      <tr>
+        <th>Tipo do Token</th>
+        <th>Valor</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        @for (token of tokens; track token.valor) {
+          <tr>
+            <td>{{ token.tipo }}</td>
+            <td>{{ token.valor }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>
+
+<section class="panel grammar">
+  <div class="panel-header">
+    <h3>Gramática Livre de Contexto</h3>
+  </div>
+
+  <pre>
+&lt;consulta&gt; ::= &lt;condicao&gt; | &lt;condicao&gt; AND &lt;consulta&gt;
+&lt;condicao&gt; ::= parametro.&lt;campo&gt; = "&lt;valor&gt;"
+&lt;campo&gt; ::= letra | letra &lt;campo&gt;
+&lt;valor&gt; ::= caractere | caractere &lt;valor&gt;
+  </pre>
+</section>
