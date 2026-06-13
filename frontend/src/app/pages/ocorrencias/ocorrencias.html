@@ -1,0 +1,62 @@
+<div class="page-header">
+  <div>
+    <h2>Ocorrências</h2>
+    <p>Gerenciamento e acompanhamento das ocorrências registradas.</p>
+  </div>
+
+  <a routerLink="/ocorrencias/nova" class="btn-primary">Nova Ocorrência</a>
+</div>
+
+@if (carregando && listaOcorrencias.length === 0) {
+  <p>Carregando ocorrências...</p>
+}
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
+<div class="table-card">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Tipo</th>
+      <th>Prioridade</th>
+      <th>Status</th>
+      <th>Localização</th>
+      <th>Registro</th>
+
+      @if (authService.isAdmin()) {
+        <th>Ações</th>
+      }
+    </tr>
+    </thead>
+
+    <tbody>
+      @for (item of listaOcorrencias; track item.id) {
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.titulo }}</td>
+          <td>{{ item.tipo }}</td>
+          <td>{{ item.prioridade }}</td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.localizacao }}</td>
+          <td>{{ item.dataAbertura }}</td>
+
+          @if (authService.isAdmin()) {
+            <td>
+              <a [routerLink]="['/ocorrencias/editar', item.id]" class="btn-edit">
+                Editar
+              </a>
+
+              <button type="button" class="btn-danger" (click)="excluir(item.id)">
+                Excluir
+              </button>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

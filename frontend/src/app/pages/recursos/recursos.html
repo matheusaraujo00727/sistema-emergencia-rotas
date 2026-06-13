@@ -1,0 +1,51 @@
+<div class="page-header">
+  <div>
+    <h2>Recursos Operacionais</h2>
+    <p>Controle dos recursos disponíveis para atendimento das ocorrências.</p>
+  </div>
+
+  <a routerLink="/recursos/novo" class="btn-primary">Novo Recurso</a>
+</div>
+
+@if (carregando) {
+  <p>Carregando recursos...</p>
+}
+
+@if (erro) {
+  <p class="erro">{{ erro }}</p>
+}
+
+<div class="cards-grid">
+  @for (recurso of recursos; track recurso.id) {
+    <div class="resource-card">
+      <div class="resource-header">
+        <span class="code">#{{ recurso.id }}</span>
+
+        @if (recurso.status === 'DISPONIVEL') {
+          <span class="chip disponivel">Disponível</span>
+        } @else {
+          <span class="chip indisponivel">Indisponível</span>
+        }
+      </div>
+
+      <h3>{{ recurso.nome }}</h3>
+      <p>Tipo: {{ recurso.tipo }}</p>
+
+      <div class="location">
+        Placa: {{ recurso.placa || 'Não informada' }}
+      </div>
+
+      @if (authService.isAdmin()) {
+        <div class="card-actions">
+          <a [routerLink]="['/recursos/editar', recurso.id]" class="btn-edit">
+            Editar
+          </a>
+
+          <button type="button" class="btn-danger" (click)="excluir(recurso.id)">
+            Excluir
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>

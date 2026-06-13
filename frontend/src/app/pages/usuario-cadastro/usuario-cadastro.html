@@ -1,0 +1,39 @@
+<div class="form-page">
+  <div class="page-header">
+    <h2>Cadastro de Usuário</h2>
+    <p>Crie um usuário para acessar o sistema.</p>
+  </div>
+
+  <form class="form-card">
+    <div class="form-group">
+      <label>Nome</label>
+      <input [(ngModel)]="nome" name="nome" placeholder="Nome completo" />
+    </div>
+
+    <div class="form-group">
+      <label>Nome</label>
+      <input [(ngModel)]="nome" name="nome" type="nome" placeholder="Felipe Gomes da Silva" />
+    </div>
+
+
+    <div class="form-group">
+      <label>CPF</label>
+      <input [(ngModel)]="cpf" name="cpf" type="cpf" placeholder="email@exemplo.com" />
+    </div>
+
+    @if (erro) {
+      <p class="erro">{{ erro }}</p>
+    }
+
+    @if (sucesso) {
+      <p class="sucesso">{{ sucesso }}</p>
+    }
+
+    <div class="actions">
+      <a routerLink="/login" class="btn-secondary">Voltar</a>
+      <button type="button" class="btn-primary" (click)="salvar()" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Cadastrar Usuário' }}
+      </button>
+    </div>
+  </form>
+</div>

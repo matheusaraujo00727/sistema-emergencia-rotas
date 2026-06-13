@@ -1,0 +1,135 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  margin: 0;
+}
+
+.page-header p {
+  margin-top: 6px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.resource-card {
+  background: white;
+  border: 1px solid #d3d8e0;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.resource-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.code {
+  font-weight: 800;
+  color: #131b2e;
+}
+
+.resource-card h3 {
+  margin: 0;
+  color: #131b2e;
+}
+
+.resource-card p {
+  margin-top: 8px;
+  color: #6b7280;
+}
+
+.location {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid #eef1f5;
+  color: #45464d;
+  font-size: 14px;
+}
+
+.chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.disponivel {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.erro {
+  background: #bb0112;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 18px;
+}
+
+.em_atendimento {
+  background: #fee2e2;
+  color: #bb0112;
+}
+
+.em_manutencao {
+  background: #fef3c7;
+  color: #92400e;
+}
+.indisponivel {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn-danger {
+  margin-top: 16px;
+  background: #bb0112;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #bb0112;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.btn-edit,
+.btn-danger {
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #e5eeff;
+  color: #131b2e;
+}
+
+.btn-danger {
+  background: #bb0112;
+  color: white;
+}
+
